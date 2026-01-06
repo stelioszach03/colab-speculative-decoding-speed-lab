@@ -1,0 +1,21 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.blg
+*.toc
+*.fls
+*.fdb_latexmk
+
+# Local temporary pages rendered from PDFs
+paper/.tmp_pages/

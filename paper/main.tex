@@ -1,0 +1,235 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+
+\pgfplotsset{compat=1.17}
+\sisetup{round-mode=places,round-precision=3}
+\setlength{\emergencystretch}{2em}
+
+\title{A Colab-Scale Study of Speculative Decoding:\\Practical Speed--Quality Frontiers Across Two Deployment Stacks on 1\,$\times$\,A100}
+\author{Stelios Zacharioudakis}
+\date{March 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Speculative decoding is widely discussed as a path to faster large language model (LLM) inference while preserving output quality. We report a Colab-scale study on a single NVIDIA A100 80GB GPU, comparing two practical deployment stacks: (i) Transformers-assisted decoding with a target--draft pair, and (ii) vLLM speculative decoding with an EAGLE-3 speculator. We measure latency, throughput, speedup versus baseline decoding, and proxy quality metrics under fixed per-study prompt sets and seeded protocols.
+
+In Study~1 (Transformers-assisted, Qwen2.5 target), all tested configurations are slower than baseline (best QA speedup $0.355\times$), with only small QA proxy-F1 deltas versus baseline ($\Delta$F1 from $-0.0001$ to $-0.0005$ relative to baseline F1 $=0.0591$). In Study~2 (vLLM + EAGLE-3, Qwen3-8B target), speculative decoding shows consistent gains, with best overall speedup $1.387\times$ and category speedups up to $1.460\times$ on math-reasoning prompts.
+
+Because the two studies differ in model family, prompt set, and decoding regime, the results should be interpreted as comparative evidence across realistic stacks rather than as a single controlled causal backend ablation. For this Colab/A100 setting, the strongest observed acceleration is in the $1.3\times$--$1.46\times$ range within the vLLM+EAGLE-3 study.
+\end{abstract}
+
+\section{Introduction}
+Speculative decoding reduces autoregressive decoding latency by allowing a smaller or auxiliary model to propose tokens that the main model can verify in blocks. Foundational work reports substantial acceleration under favorable conditions \cite{leviathan2023fast,chen2023speculative}. However, practical deployment often diverges from idealized settings due to runtime-specific costs, tokenizer constraints, and memory behavior.
+
+This paper asks a practical question: \emph{what speed--quality gains are reproducibly achievable in a Colab-scale environment on 1\,$\times$\,A100?} We execute two studies with a shared reporting protocol:
+\begin{itemize}[leftmargin=1.2em]
+    \item \textbf{Study~1:} Transformers-assisted speculative decoding with Qwen2.5 target/draft variants.
+    \item \textbf{Study~2:} vLLM speculative decoding with Qwen3-8B target and RedHatAI EAGLE-3 speculator.
+\end{itemize}
+
+The main contribution is not a new algorithmic variant, but a systematic engineering evaluation that highlights where speedups materialize in practice and where they fail.
+
+\section{Related Work}
+Speculative decoding was formalized as a lossless acceleration strategy in \cite{leviathan2023fast}, with subsequent sampling and systems variants \cite{chen2023speculative,mamou2024dynamic}. EAGLE-family methods shift speculation to stronger internal representations and dynamic trees \cite{li2024eagle,li2024eagle2,li2025eagle3}. Medusa provides a related multi-head acceleration alternative \cite{cai2024medusa}. A recent survey synthesizes this rapidly expanding design space \cite{xia2024survey}.
+
+On the implementation side, practical behavior is governed by serving/runtime stack details, including tokenizer compatibility, batching strategy, and kernel/runtime scheduling \cite{hf_assisted_docs,hf_uag_blog,vllm_spec_docs,redhat_eagle3_modelcard}.
+
+\section{Experimental Setup}
+\subsection{Hardware and Runtime}
+\begin{itemize}[leftmargin=1.2em]
+    \item GPU: NVIDIA A100-SXM4-80GB (Google Colab runtime)
+    \item Single-GPU inference (no tensor parallelism across devices)
+    \item Seeded benchmarking with explicit warmup excluded from metrics
+\end{itemize}
+
+\subsection{Study~1 (Transformers-Assisted)}
+\begin{itemize}[leftmargin=1.2em]
+    \item Target: \texttt{Qwen/Qwen2.5-7B-Instruct}
+    \item Drafts: \texttt{Qwen/Qwen2.5-0.5B-Instruct} (close-match), \texttt{Qwen/Qwen2.5-0.5B} (mismatch)
+    \item Prompt set: 24 SQuAD-derived prompts (short/long/QA splits)
+    \item Generation length: 128 new tokens
+    \item Block-size ablation: \{8,16\} plus mismatch at 16
+    \item Decoding settings: \texttt{do\_sample=False}, \texttt{temperature}=1.0
+\end{itemize}
+
+\subsection{Study~2 (vLLM + EAGLE-3)}
+\begin{itemize}[leftmargin=1.2em]
+    \item Target: \texttt{Qwen/Qwen3-8B}
+    \item Speculator: \texttt{RedHatAI/Qwen3-8B-speculator.eagle3}
+    \item Prompt set: 24 prompts (12 summarization + 12 math reasoning) from the Red Hat AI \texttt{speculator\_benchmarks} dataset
+    \item Speculative token ablation: \{3,5\}
+    \item Decoding settings: \texttt{temperature}=0.6, \texttt{top\_p}=0.95, \texttt{top\_k}=20, seed=0
+\end{itemize}
+
+\subsection{Reproducibility Profile}
+\begin{itemize}[leftmargin=1.2em]
+    \item Runtime: Google Colab Python 3.12 on 1\,$\times$\,A100-80GB.
+    \item Library versions used in the notebook: PyTorch 2.8.0+cu128, Transformers 4.57.6, vLLM 0.11.0.
+    \item Study~1 assisted-decoding parameters: max\_new\_tokens=128, num\_assistant\_tokens in \{8,16\}, assistant\_confidence\_threshold=0.4.
+    \item Study~2 vLLM parameters: max\_new\_tokens=128; num\_speculative\_tokens in \{3,5\}; max\_model\_len=4096; gpu\_memory\_utilization=0.55.
+    \item Seed control: Python/NumPy/PyTorch seed=0; vLLM SamplingParams seed=0.
+\end{itemize}
+
+\subsection{Metrics}
+We report:
+\begin{itemize}[leftmargin=1.2em]
+    \item \textbf{Latency} (mean and median)
+    \item \textbf{Throughput} (global tokens/sec)
+    \item \textbf{Speedup} vs baseline:
+    \begin{equation}
+        \text{Speedup} = \frac{T_{\text{baseline}}}{T_{\text{speculative}}}
+    \end{equation}
+    \item \textbf{Quality proxies}: normalized-token F1-like score and exact-match-vs-baseline checks (proxy-only)
+    \item \textbf{Acceptance proxy}: token-prefix agreement rate between baseline/speculative outputs
+\end{itemize}
+
+\section{Results}
+\subsection{Study~1: Assisted Decoding Did Not Accelerate}
+Table~\ref{tab:phase2} shows that all tested assisted-decoding configurations were slower than baseline (speedup $<1$), with best QA speedup $0.355\times$.
+
+\begin{table}[t]
+\centering
+\caption{Study~1 (Transformers-assisted) results on QA split. Baseline QA latency: 4.052\,s, baseline global throughput: 31.589 tok/s.}
+\label{tab:phase2}
+\begin{tabular}{lcccc}
+\toprule
+Config & Speedup$_{QA}$ & Latency$_{QA}$ (s) & Quality F1 & Acceptance Proxy \\
+\midrule
+close\_match\_b8  & 0.310 & 13.053 & 0.0590 & 0.280 \\
+close\_match\_b16 & 0.312 & 12.971 & 0.0590 & 0.164 \\
+mismatch\_b16      & \textbf{0.355} & \textbf{11.429} & 0.0586 & 0.169 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Quality remained close to baseline: baseline QA F1 is $0.0591$, and $\Delta$F1 vs baseline is $-0.0001$ (close\_match\_b8), $-0.0001$ (close\_match\_b16), and $-0.0005$ (mismatch\_b16). This suggests the regression is primarily systems/runtime overhead rather than output collapse on this QA proxy.
+
+\subsection{Study~2: vLLM + EAGLE-3 Produced Practical Speedups}
+The vLLM+EAGLE-3 stack produced materially better latency/throughput behavior (Table~\ref{tab:phase3-main}). Best speedup reached \textbf{1.387$\times$} (\texttt{eagle3\_n3}).
+
+\begin{table}[t]
+\centering
+\caption{Study~2 (vLLM + EAGLE-3) aggregate results.}
+\label{tab:phase3-main}
+\begin{tabular}{lcccc}
+\toprule
+Config & Num Spec Tokens & Speedup & Global TPS & Quality F1 \\
+\midrule
+eagle3\_n3 & 3 & \textbf{1.387} & \textbf{110.926} & \textbf{0.2880} \\
+eagle3\_n5 & 5 & 1.325 & 105.903 & 0.2830 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Per-category latency analysis for the best configuration is shown in Table~\ref{tab:phase3-lat-cat}.
+
+\begin{table}[t]
+\centering
+\caption{Latency by category for best Study~2 config (\texttt{eagle3\_n3}).}
+\label{tab:phase3-lat-cat}
+\begin{tabular}{lccc}
+\toprule
+Category & Baseline Latency (s) & Speculative Latency (s) & Speedup \\
+\midrule
+math\_reasoning & 1.575 & 1.079 & \textbf{1.460} \\
+summarization   & 1.627 & 1.229 & 1.323 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.90\linewidth,
+    height=0.52\linewidth,
+    xlabel={Quality Proxy (F1-like)},
+    ylabel={Speedup vs Baseline},
+    ymin=0.2, ymax=1.55,
+    xmin=0.05, xmax=0.30,
+    scaled x ticks=false,
+    xtick={0.06,0.12,0.18,0.24,0.30},
+    xticklabel style={/pgf/number format/fixed,/pgf/number format/precision=2},
+    grid=both,
+    legend style={at={(0.02,0.98)},anchor=north west,draw=none,fill=none},
+]
+\addplot+[only marks, mark=o, mark size=2.2pt] table[x=qa_f1,y=speedup_qa,col sep=comma] {data/phase2_results.csv};
+\addlegendentry{Study~1 (HF-assisted)}
+\addplot+[only marks, mark=x, mark size=3.0pt] table[x=quality_f1_vs_reference,y=speedup,col sep=comma] {data/phase3_results.csv};
+\addlegendentry{Study~2 (vLLM+EAGLE-3)}
+\addplot[dashed,gray] coordinates {(0.05,1.0) (0.30,1.0)};
+\end{axis}
+\end{tikzpicture}
+\caption{Speed--quality frontier across the two studies. Since models/prompts/regimes differ across studies, this figure is comparative (not a controlled causal backend ablation).}
+\label{fig:speed-quality}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.78\linewidth,
+    height=0.45\linewidth,
+    xlabel={num\_speculative\_tokens},
+    ylabel={Speedup},
+    ymin=1.0, ymax=1.45,
+    xmin=2.5, xmax=5.5,
+    xtick={3,5},
+    grid=both,
+]
+\addplot+[mark=o] table[x=num_speculative_tokens,y=speedup,col sep=comma] {data/phase3_results.csv};
+\addplot[dashed,gray] coordinates {(2.5,1.0) (5.5,1.0)};
+\end{axis}
+\end{tikzpicture}
+\caption{Study~2 ablation over speculative token budget. In this run, 3 tokens outperformed 5.}
+\label{fig:phase3-ablation}
+\end{figure}
+
+Study~2 quality should be interpreted as proxy-only: the reported F1 is reference-relative on a different task mix than Study~1, and exact match vs baseline is 0.0 under seeded stochastic decoding.
+
+\subsection{Internal Stability Slice (Study~2)}
+Although we did not run full multi-seed repeats, Study~2 shows consistent acceleration across two independent slices: both tested speculation budgets exceed $1\times$ (1.387 and 1.325), and both prompt categories exceed $1\times$ (math 1.460, summarization 1.323).
+
+\section{Discussion}
+\paragraph{Why Study~1 underperformed.}
+Our Study~1 setup required universal tokenizer handling and incurred significant runtime overhead in assisted generation, overwhelming theoretical savings from draft proposals in this environment.
+
+\paragraph{Why Study~2 improved.}
+vLLM with EAGLE-3 delivered substantially better kernel/runtime behavior and scheduling in this stack, yielding practical gains above $1.3\times$.
+
+\paragraph{Why not 2\,$\times$--3\,$\times$ yet.}
+Even with optimized serving, observed gains remain bounded by prompt-length distribution, speculation budget, and acceptance dynamics. Under the tested conditions, we observed up to $1.460\times$ category speedup and $1.387\times$ aggregate speedup, not $2\times$--$3\times$.
+
+\section{Limitations and Threats to Validity}
+\begin{itemize}[leftmargin=1.2em]
+    \item Small evaluation set (24 prompts) chosen for rapid Colab iteration.
+    \item Cross-study confounds exist: studies differ in target model family, prompt set, and decoding regime.
+    \item Quality metrics are proxy-based and task-heterogeneous (SQuAD-style QA proxy in Study~1; reference-relative prompt mix in Study~2).
+    \item No full multi-seed repeated-run error bars were computed; stability evidence is limited to ablation/category consistency within Study~2.
+    \item Single hardware/runtime profile (1\,$\times$\,A100, Colab).
+    \item Results can shift with newer runtime/library versions and different batching/prompt distributions.
+\end{itemize}
+
+\section{Conclusion}
+This work provides a practical speculative-decoding benchmark in a Colab-scale environment across two realistic deployment stacks. Study~1 (Transformers-assisted) regressed in latency despite near-baseline QA proxy quality, while Study~2 (vLLM+EAGLE-3) reached $1.387\times$ aggregate speedup and up to $1.460\times$ on math prompts. The claim we support is comparative and stack-specific: in this setup, the strongest measured gains are in the $\sim$1.3--1.46$\times$ range, with $2\times$--$3\times$ remaining a target for broader systems tuning and larger-scale serving conditions.
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}

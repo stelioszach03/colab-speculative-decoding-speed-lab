@@ -1,0 +1,77 @@
+\begin{thebibliography}{10}
+
+\bibitem{cai2024medusa}
+Tianle Cai, Yuhong Li, Zhengyang Geng, et~al.
+\newblock Medusa: Simple llm inference acceleration framework with multiple
+  decoding heads.
+\newblock In {\em Proceedings of the 41st International Conference on Machine
+  Learning (ICML)}, 2024.
+
+\bibitem{chen2023speculative}
+Charlie Chen, Sebastian Borgeaud, Geoffrey Irving, et~al.
+\newblock Accelerating large language model decoding with speculative sampling.
+\newblock {\em arXiv preprint arXiv:2302.01318}, 2023.
+
+\bibitem{hf_uag_blog}
+{Hugging Face}.
+\newblock Universal assisted generation.
+\newblock
+  \href{https://huggingface.co/blog/universal_assisted_generation}{Hugging Face
+  Blog}, 2024.
+
+\bibitem{hf_assisted_docs}
+{Hugging Face}.
+\newblock Hugging face transformers documentation: Assisted generation.
+\newblock
+  \href{https://huggingface.co/docs/transformers/en/generation_strategies#assisted-generation}{Hugging
+  Face Docs}, 2026.
+
+\bibitem{leviathan2023fast}
+Yaniv Leviathan, Matan Kalman, and Yossi Matias.
+\newblock Fast inference from transformers via speculative decoding.
+\newblock In {\em Proceedings of the 40th International Conference on Machine
+  Learning (ICML)}, 2023.
+
+\bibitem{li2025eagle3}
+Yuhui Li et~al.
+\newblock Eagle-3: Scaling up inference acceleration of large language models
+  via training-time test.
+\newblock {\em arXiv preprint arXiv:2503.01840}, 2025.
+
+\bibitem{li2024eagle}
+Yuhui Li, Feng Wei, Jiajun Zhang, and Hongyang Zhang.
+\newblock Eagle: Speculative sampling requires rethinking feature uncertainty.
+\newblock {\em arXiv preprint arXiv:2401.15077}, 2024.
+
+\bibitem{li2024eagle2}
+Yuhui Li, Hongyang Zhang, et~al.
+\newblock Eagle-2: Faster inference of language models with dynamic draft
+  trees.
+\newblock {\em arXiv preprint arXiv:2406.16858}, 2024.
+
+\bibitem{mamou2024dynamic}
+Jonathan Mamou, Miguel Del~Rio, Brian Stephenson, et~al.
+\newblock Dynamic speculation lookahead accelerates speculative decoding of
+  large language models.
+\newblock {\em arXiv preprint arXiv:2405.04304}, 2024.
+
+\bibitem{redhat_eagle3_modelcard}
+{Red Hat AI}.
+\newblock Redhatai qwen3-8b-speculator.eagle3 (model card).
+\newblock
+  \href{https://huggingface.co/RedHatAI/Qwen3-8B-speculator.eagle3}{Hugging
+  Face Model Card}, 2026.
+
+\bibitem{vllm_spec_docs}
+{vLLM Team}.
+\newblock vllm documentation: Speculative decoding.
+\newblock \href{https://docs.vllm.ai/features/spec_decode.html}{vLLM
+  Documentation}, 2026.
+
+\bibitem{xia2024survey}
+Heming Xia, Zhe Yang, et~al.
+\newblock Unlocking efficiency in large language model inference: A
+  comprehensive survey of speculative decoding.
+\newblock In {\em Findings of ACL 2024}, 2024.
+
+\end{thebibliography}

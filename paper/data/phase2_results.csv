@@ -1,0 +1,4 @@
+config,draft_key,block_size,speedup_short,speedup_long,speedup_qa,latency_short_s,latency_long_s,qa_f1,qa_em,acceptance_rate
+close_match_b8,close_match,8,0.293348,0.314503,0.310430,13.694668,12.944659,0.059029,0.0,0.280379
+close_match_b16,close_match,16,0.292196,0.313645,0.312382,13.748656,12.980058,0.059029,0.0,0.163551
+mismatch_b16,mismatch,16,0.251255,0.356633,0.354550,15.988941,11.415447,0.058579,0.0,0.169218
