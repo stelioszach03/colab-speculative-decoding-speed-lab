@@ -1,3 +1,0 @@
-config,method,num_speculative_tokens,speedup,latency_mean_s,global_tps,quality_f1_vs_reference,exact_match_vs_baseline,acceptance_rate_proxy
-eagle3_n3,eagle3,3,1.387407,1.153923,110.925965,0.287993,0.0,0.085286
-eagle3_n5,eagle3,5,1.324579,1.208656,105.902785,0.282986,0.0,0.090820

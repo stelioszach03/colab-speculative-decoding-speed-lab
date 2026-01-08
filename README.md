@@ -4,8 +4,9 @@ A reproducible Colab-scale study of speculative decoding speed/quality trade-off
 
 ## What this repo contains
 - `Colab_Scale_Study_of_Speculative_Decoding.ipynb`: end-to-end benchmark notebook
-- `paper/`: arXiv-style manuscript and CSV tables used by plots
-- `arxiv_submission/`: upload-ready arXiv source package
+- `paper/main.pdf`: final manuscript PDF
+- `paper/main.tex`: manuscript source
+- `paper/data/`: CSV tables consumed by manuscript plots
 - `extracted_metrics.json`: consolidated run metrics snapshot
 
 ## Study design

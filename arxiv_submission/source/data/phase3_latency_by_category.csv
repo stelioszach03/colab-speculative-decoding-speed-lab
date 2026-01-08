@@ -1,3 +1,0 @@
-category,baseline_latency_s,best_spec_latency_s,speedup,best_config
-math_reasoning,1.575138,1.078567,1.460399,eagle3_n3
-summarization,1.626783,1.229279,1.323364,eagle3_n3
