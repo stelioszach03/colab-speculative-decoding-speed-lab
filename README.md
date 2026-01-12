@@ -1,44 +1,56 @@
 # Colab Speculative Decoding Speed Lab
 
-A reproducible Colab-scale study of speculative decoding speed/quality trade-offs on **1x NVIDIA A100**.
+Colab-scale empirical study of speculative decoding speed-quality trade-offs on **1x NVIDIA A100 (80GB)**.
 
-## What this repo contains
-- `Colab_Scale_Study_of_Speculative_Decoding.ipynb`: end-to-end benchmark notebook
-- `paper/main.pdf`: final manuscript PDF
-- `paper/main.tex`: manuscript source
-- `paper/data/`: CSV tables consumed by manuscript plots
-- `extracted_metrics.json`: consolidated run metrics snapshot
+## Overview
+This repository benchmarks two practical inference stacks for LLM decoding acceleration:
+- **Study 1 (Transformers-assisted decoding)**: target+draft assisted generation with block-size and draft-target mismatch ablations.
+- **Study 2 (vLLM + EAGLE-3)**: speculative decoding with a production-style backend and speculative-token ablation.
 
-## Study design
-- **Study 1 (Transformers-assisted decoding)**
-  - Qwen2.5 target + draft variants
-  - Block-size and mismatch ablations
-  - Baseline vs speculative latency/speedup comparisons
-- **Study 2 (vLLM + EAGLE-3)**
-  - Qwen3-8B target + RedHatAI EAGLE-3 speculator
-  - Speculative-token ablation (`n=3,5`)
-  - Throughput and per-category latency comparisons
+The project includes:
+- an end-to-end notebook pipeline,
+- a manuscript-ready LaTeX paper,
+- exported result artifacts used to generate the paper tables/figures.
 
-## Main reported results
-- Study 1: no acceleration (best QA speedup `< 1x`)
-- Study 2: practical gains up to **1.387x aggregate** and **1.460x** on math prompts
+## Key Results
+- **Study 1:** no acceleration (best QA speedup remains `<1x`).
+- **Study 2:** up to **1.387x aggregate speedup** and **1.460x category speedup** (math prompts).
 
-## Run instructions
-1. Open the notebook in VS Code connected to Colab kernel (A100 High-RAM).
-2. Run cells in order.
-3. Study 1 path: Cells 1-10.
-4. Optional extension: temperature ablation cell.
-5. Study 2 path: Cells A-E.
+## Repository Structure
+| Path | Purpose |
+|---|---|
+| `Colab_Scale_Study_of_Speculative_Decoding.ipynb` | Main benchmark notebook (Study 1 + Study 2 paths) |
+| `paper/main.pdf` | Final paper PDF |
+| `paper/main.tex` | LaTeX source for the manuscript |
+| `paper/references.bib` | Bibliography source |
+| `paper/data/*.csv` | Tables consumed by `pgfplots/pgfplotstable` in the manuscript |
+| `paper/README.md` | Paper-specific build/run notes |
+| `extracted_metrics.json` | Consolidated metrics snapshot exported from notebook runs |
+| `docs/REPRODUCIBILITY.md` | Environment, runtime, and reproducibility checklist |
 
-## Reproducibility notes
-- The notebook logs key package/runtime versions during execution.
-- `paper/data/*.csv` files are generated from notebook artifacts and consumed by LaTeX plots.
+## Quick Start
+1. Open `Colab_Scale_Study_of_Speculative_Decoding.ipynb` in VS Code.
+2. Connect notebook kernel to Google Colab (A100 High-RAM runtime).
+3. Run cells top-to-bottom.
+4. Export/update result artifacts and sync `paper/data/*.csv` if needed.
 
-## Paper build
+## Rebuild the Paper
 From `paper/`:
+
 ```bash
 pdflatex -interaction=nonstopmode -halt-on-error main.tex
 bibtex main
 pdflatex -interaction=nonstopmode -halt-on-error main.tex
 pdflatex -interaction=nonstopmode -halt-on-error main.tex
 ```
+
+## Notes
+- The notebook records package/runtime details at execution time.
+- Manuscript plots are generated directly from CSV inputs (no external image files required).
+- Results are specific to this runtime profile (single A100, Colab stack).
+
+## Citation
+If this repository is useful in your work, cite it using [CITATION.cff](/Users/stelioszacharioudakis/Documents/LLM_Speculative_Decoding_Speed_Lab/CITATION.cff).
+
+## License
+This project is licensed under the MIT License. See [LICENSE](/Users/stelioszacharioudakis/Documents/LLM_Speculative_Decoding_Speed_Lab/LICENSE).

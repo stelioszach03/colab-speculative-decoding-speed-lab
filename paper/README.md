@@ -1,24 +1,26 @@
-# arXiv Paper Package
+# Paper Package
 
-This folder contains a full LaTeX manuscript based on the executed notebook runs.
+This folder contains the manuscript source and data inputs used in the final paper.
 
-## Files
-- `main.tex`: manuscript
-- `references.bib`: bibliography
-- `data/phase2_results.csv`: Phase-2 table data
-- `data/phase3_results.csv`: Phase-3 table/ablation data
-- `data/phase3_latency_by_category.csv`: category-level latency table
+## Contents
+- `main.tex`: manuscript source
+- `main.pdf`: compiled manuscript
+- `references.bib`: bibliography database
+- `data/phase2_results.csv`: Study 1 result table input
+- `data/phase3_results.csv`: Study 2 aggregate + ablation input
+- `data/phase3_latency_by_category.csv`: Study 2 per-category latency input
 
 ## Build
-From `paper/`:
+From this directory:
 
 ```bash
-pdflatex main.tex
+pdflatex -interaction=nonstopmode -halt-on-error main.tex
 bibtex main
-pdflatex main.tex
-pdflatex main.tex
+pdflatex -interaction=nonstopmode -halt-on-error main.tex
+pdflatex -interaction=nonstopmode -halt-on-error main.tex
 ```
 
 ## Notes
-- Figures are generated directly in LaTeX via `pgfplots` from CSV files in `data/`.
-- Reported values are tied to the exact Colab/A100 runs saved in the notebook.
+- Figures are generated with `pgfplots` directly from CSV files in `data/`.
+- Keep `paper/data/*.csv` aligned with notebook-exported metrics.
+- `main.pdf` is the canonical rendered output tracked in the repository.
