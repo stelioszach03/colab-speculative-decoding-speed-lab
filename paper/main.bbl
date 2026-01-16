@@ -50,10 +50,13 @@ Yuhui Li, Hongyang Zhang, et~al.
 \newblock {\em arXiv preprint arXiv:2406.16858}, 2024.
 
 \bibitem{mamou2024dynamic}
-Jonathan Mamou, Miguel Del~Rio, Brian Stephenson, et~al.
+Jonathan Mamou, Oren Pereg, Daniel Korat, Moshe Berchansky, Nadav Timor, Moshe
+  Wasserblat, and Roy Schwartz.
 \newblock Dynamic speculation lookahead accelerates speculative decoding of
   large language models.
-\newblock {\em arXiv preprint arXiv:2405.04304}, 2024.
+\newblock In {\em Proceedings of The 4th NeurIPS Efficient Natural Language and
+  Speech Processing Workshop}, volume 262 of {\em Proceedings of Machine
+  Learning Research}, pages 456--467. PMLR, 2024.
 
 \bibitem{redhat_eagle3_modelcard}
 {Red Hat AI}.
