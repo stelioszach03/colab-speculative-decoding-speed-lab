@@ -1,0 +1,17 @@
+name: Recorded artifact consistency
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  recorded-values:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check committed result consistency (no model execution)
+        run: python scripts/check_recorded_results.py
