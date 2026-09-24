@@ -1,0 +1,712 @@
+{
+  "configuration": {
+    "allocation_wall_seconds": 14400,
+    "cache_policy": "Fresh server per model/prefix/replicate/cache cell. Stage-specific prefixes prevent cross-stage text reuse except shared chat-template tokens. Warmups use disjoint prompts.",
+    "campaign_gpu_cost_cap_usd": 18,
+    "cells_per_hardware": [
+      {
+        "concurrency": [
+          1,
+          4,
+          16,
+          32
+        ],
+        "id": "r1-qwen-1.5b-shared-cache-0",
+        "model": "Qwen/Qwen2.5-1.5B-Instruct",
+        "model_alias": "qwen-1.5b",
+        "prefix_cache": false,
+        "prefix_kind": "shared",
+        "replicate": 1,
+        "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+        "seed": 31
+      },
+      {
+        "concurrency": [
+          1,
+          4,
+          16,
+          32
+        ],
+        "id": "r1-qwen-1.5b-shared-cache-1",
+        "model": "Qwen/Qwen2.5-1.5B-Instruct",
+        "model_alias": "qwen-1.5b",
+        "prefix_cache": true,
+        "prefix_kind": "shared",
+        "replicate": 1,
+        "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+        "seed": 31
+      },
+      {
+        "concurrency": [
+          1,
+          4,
+          16,
+          32
+        ],
+        "id": "r1-qwen-1.5b-unique-cache-0",
+        "model": "Qwen/Qwen2.5-1.5B-Instruct",
+        "model_alias": "qwen-1.5b",
+        "prefix_cache": false,
+        "prefix_kind": "unique",
+        "replicate": 1,
+        "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+        "seed": 31
+      },
+      {
+        "concurrency": [
+          1,
+          4,
+          16,
+          32
+        ],
+        "id": "r1-qwen-1.5b-unique-cache-1",
+        "model": "Qwen/Qwen2.5-1.5B-Instruct",
+        "model_alias": "qwen-1.5b",
+        "prefix_cache": true,
+        "prefix_kind": "unique",
+        "replicate": 1,
+        "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+        "seed": 31
+      },
+      {
+        "concurrency": [
+          1,
+          4,
+          16,
+          32
+        ],
+        "id": "r1-qwen-7b-shared-cache-0",
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "model_alias": "qwen-7b",
+        "prefix_cache": false,
+        "prefix_kind": "shared",
+        "replicate": 1,
+        "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+        "seed": 31
+      },
+      {
+        "concurrency": [
+          1,
+          4,
+          16,
+          32
+        ],
+        "id": "r1-qwen-7b-shared-cache-1",
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "model_alias": "qwen-7b",
+        "prefix_cache": true,
+        "prefix_kind": "shared",
+        "replicate": 1,
+        "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+        "seed": 31
+      },
+      {
+        "concurrency": [
+          1,
+          4,
+          16,
+          32
+        ],
+        "id": "r1-qwen-7b-unique-cache-0",
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "model_alias": "qwen-7b",
+        "prefix_cache": false,
+        "prefix_kind": "unique",
+        "replicate": 1,
+        "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+        "seed": 31
+      },
+      {
+        "concurrency": [
+          1,
+          4,
+          16,
+          32
+        ],
+        "id": "r1-qwen-7b-unique-cache-1",
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "model_alias": "qwen-7b",
+        "prefix_cache": true,
+        "prefix_kind": "unique",
+        "replicate": 1,
+        "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+        "seed": 31
+      },
+      {
+        "concurrency": [
+          32,
+          16,
+          4,
+          1
+        ],
+        "id": "r2-qwen-7b-unique-cache-1",
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "model_alias": "qwen-7b",
+        "prefix_cache": true,
+        "prefix_kind": "unique",
+        "replicate": 2,
+        "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+        "seed": 47
+      },
+      {
+        "concurrency": [
+          32,
+          16,
+          4,
+          1
+        ],
+        "id": "r2-qwen-7b-unique-cache-0",
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "model_alias": "qwen-7b",
+        "prefix_cache": false,
+        "prefix_kind": "unique",
+        "replicate": 2,
+        "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+        "seed": 47
+      },
+      {
+        "concurrency": [
+          32,
+          16,
+          4,
+          1
+        ],
+        "id": "r2-qwen-7b-shared-cache-1",
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "model_alias": "qwen-7b",
+        "prefix_cache": true,
+        "prefix_kind": "shared",
+        "replicate": 2,
+        "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+        "seed": 47
+      },
+      {
+        "concurrency": [
+          32,
+          16,
+          4,
+          1
+        ],
+        "id": "r2-qwen-7b-shared-cache-0",
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "model_alias": "qwen-7b",
+        "prefix_cache": false,
+        "prefix_kind": "shared",
+        "replicate": 2,
+        "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+        "seed": 47
+      },
+      {
+        "concurrency": [
+          32,
+          16,
+          4,
+          1
+        ],
+        "id": "r2-qwen-1.5b-unique-cache-1",
+        "model": "Qwen/Qwen2.5-1.5B-Instruct",
+        "model_alias": "qwen-1.5b",
+        "prefix_cache": true,
+        "prefix_kind": "unique",
+        "replicate": 2,
+        "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+        "seed": 47
+      },
+      {
+        "concurrency": [
+          32,
+          16,
+          4,
+          1
+        ],
+        "id": "r2-qwen-1.5b-unique-cache-0",
+        "model": "Qwen/Qwen2.5-1.5B-Instruct",
+        "model_alias": "qwen-1.5b",
+        "prefix_cache": false,
+        "prefix_kind": "unique",
+        "replicate": 2,
+        "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+        "seed": 47
+      },
+      {
+        "concurrency": [
+          32,
+          16,
+          4,
+          1
+        ],
+        "id": "r2-qwen-1.5b-shared-cache-1",
+        "model": "Qwen/Qwen2.5-1.5B-Instruct",
+        "model_alias": "qwen-1.5b",
+        "prefix_cache": true,
+        "prefix_kind": "shared",
+        "replicate": 2,
+        "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+        "seed": 47
+      },
+      {
+        "concurrency": [
+          32,
+          16,
+          4,
+          1
+        ],
+        "id": "r2-qwen-1.5b-shared-cache-0",
+        "model": "Qwen/Qwen2.5-1.5B-Instruct",
+        "model_alias": "qwen-1.5b",
+        "prefix_cache": false,
+        "prefix_kind": "shared",
+        "replicate": 2,
+        "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+        "seed": 47
+      },
+      {
+        "concurrency": [
+          4,
+          32,
+          1,
+          16
+        ],
+        "id": "r3-qwen-7b-shared-cache-1",
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "model_alias": "qwen-7b",
+        "prefix_cache": true,
+        "prefix_kind": "shared",
+        "replicate": 3,
+        "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+        "seed": 73
+      },
+      {
+        "concurrency": [
+          4,
+          32,
+          1,
+          16
+        ],
+        "id": "r3-qwen-7b-shared-cache-0",
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "model_alias": "qwen-7b",
+        "prefix_cache": false,
+        "prefix_kind": "shared",
+        "replicate": 3,
+        "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+        "seed": 73
+      },
+      {
+        "concurrency": [
+          4,
+          32,
+          1,
+          16
+        ],
+        "id": "r3-qwen-7b-unique-cache-1",
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "model_alias": "qwen-7b",
+        "prefix_cache": true,
+        "prefix_kind": "unique",
+        "replicate": 3,
+        "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+        "seed": 73
+      },
+      {
+        "concurrency": [
+          4,
+          32,
+          1,
+          16
+        ],
+        "id": "r3-qwen-7b-unique-cache-0",
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "model_alias": "qwen-7b",
+        "prefix_cache": false,
+        "prefix_kind": "unique",
+        "replicate": 3,
+        "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+        "seed": 73
+      },
+      {
+        "concurrency": [
+          4,
+          32,
+          1,
+          16
+        ],
+        "id": "r3-qwen-1.5b-shared-cache-1",
+        "model": "Qwen/Qwen2.5-1.5B-Instruct",
+        "model_alias": "qwen-1.5b",
+        "prefix_cache": true,
+        "prefix_kind": "shared",
+        "replicate": 3,
+        "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+        "seed": 73
+      },
+      {
+        "concurrency": [
+          4,
+          32,
+          1,
+          16
+        ],
+        "id": "r3-qwen-1.5b-shared-cache-0",
+        "model": "Qwen/Qwen2.5-1.5B-Instruct",
+        "model_alias": "qwen-1.5b",
+        "prefix_cache": false,
+        "prefix_kind": "shared",
+        "replicate": 3,
+        "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+        "seed": 73
+      },
+      {
+        "concurrency": [
+          4,
+          32,
+          1,
+          16
+        ],
+        "id": "r3-qwen-1.5b-unique-cache-1",
+        "model": "Qwen/Qwen2.5-1.5B-Instruct",
+        "model_alias": "qwen-1.5b",
+        "prefix_cache": true,
+        "prefix_kind": "unique",
+        "replicate": 3,
+        "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+        "seed": 73
+      },
+      {
+        "concurrency": [
+          4,
+          32,
+          1,
+          16
+        ],
+        "id": "r3-qwen-1.5b-unique-cache-0",
+        "model": "Qwen/Qwen2.5-1.5B-Instruct",
+        "model_alias": "qwen-1.5b",
+        "prefix_cache": false,
+        "prefix_kind": "unique",
+        "replicate": 3,
+        "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+        "seed": 73
+      },
+      {
+        "concurrency": [
+          16,
+          1,
+          32,
+          4
+        ],
+        "id": "r4-qwen-1.5b-unique-cache-0",
+        "model": "Qwen/Qwen2.5-1.5B-Instruct",
+        "model_alias": "qwen-1.5b",
+        "prefix_cache": false,
+        "prefix_kind": "unique",
+        "replicate": 4,
+        "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+        "seed": 101
+      },
+      {
+        "concurrency": [
+          16,
+          1,
+          32,
+          4
+        ],
+        "id": "r4-qwen-1.5b-unique-cache-1",
+        "model": "Qwen/Qwen2.5-1.5B-Instruct",
+        "model_alias": "qwen-1.5b",
+        "prefix_cache": true,
+        "prefix_kind": "unique",
+        "replicate": 4,
+        "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+        "seed": 101
+      },
+      {
+        "concurrency": [
+          16,
+          1,
+          32,
+          4
+        ],
+        "id": "r4-qwen-1.5b-shared-cache-0",
+        "model": "Qwen/Qwen2.5-1.5B-Instruct",
+        "model_alias": "qwen-1.5b",
+        "prefix_cache": false,
+        "prefix_kind": "shared",
+        "replicate": 4,
+        "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+        "seed": 101
+      },
+      {
+        "concurrency": [
+          16,
+          1,
+          32,
+          4
+        ],
+        "id": "r4-qwen-1.5b-shared-cache-1",
+        "model": "Qwen/Qwen2.5-1.5B-Instruct",
+        "model_alias": "qwen-1.5b",
+        "prefix_cache": true,
+        "prefix_kind": "shared",
+        "replicate": 4,
+        "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+        "seed": 101
+      },
+      {
+        "concurrency": [
+          16,
+          1,
+          32,
+          4
+        ],
+        "id": "r4-qwen-7b-unique-cache-0",
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "model_alias": "qwen-7b",
+        "prefix_cache": false,
+        "prefix_kind": "unique",
+        "replicate": 4,
+        "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+        "seed": 101
+      },
+      {
+        "concurrency": [
+          16,
+          1,
+          32,
+          4
+        ],
+        "id": "r4-qwen-7b-unique-cache-1",
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "model_alias": "qwen-7b",
+        "prefix_cache": true,
+        "prefix_kind": "unique",
+        "replicate": 4,
+        "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+        "seed": 101
+      },
+      {
+        "concurrency": [
+          16,
+          1,
+          32,
+          4
+        ],
+        "id": "r4-qwen-7b-shared-cache-0",
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "model_alias": "qwen-7b",
+        "prefix_cache": false,
+        "prefix_kind": "shared",
+        "replicate": 4,
+        "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+        "seed": 101
+      },
+      {
+        "concurrency": [
+          16,
+          1,
+          32,
+          4
+        ],
+        "id": "r4-qwen-7b-shared-cache-1",
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "model_alias": "qwen-7b",
+        "prefix_cache": true,
+        "prefix_kind": "shared",
+        "replicate": 4,
+        "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+        "seed": 101
+      }
+    ],
+    "experiment_wall_seconds": 10800,
+    "gpu_memory_utilization": 0.8,
+    "hardware": {
+      "a10080": "NVIDIA A100-SXM4-80GB",
+      "rtx4090": "NVIDIA GeForce RTX 4090"
+    },
+    "image": "vllm/vllm-openai@sha256:df2607b26bdda2875de4832f4d08da0055b4b6e3570347f3a849bcc652771dd6",
+    "limitations": [
+      "Fixed-length synthetic summaries, not production traffic or answer-quality evaluation.",
+      "One allocated instance per hardware class; repeated requests are not independent GPU installations.",
+      "Requested deterministic decoding does not guarantee identical text; report output differences.",
+      "Two sizes in one model family, no cross-family or quantization/speculative-decoding claim.",
+      "All missing/failing cells remain explicit; no selective repetitions after measured outcomes."
+    ],
+    "max_model_len": 4096,
+    "max_output_tokens": 128,
+    "measured_requests_per_stage": 64,
+    "metrics": [
+      "task_request_success",
+      "first_text_chunk_latency",
+      "p50_p95_request_latency",
+      "completion_tokens_per_second",
+      "token_usage",
+      "device_utilization",
+      "device_memory",
+      "paired_output_hash_agreement"
+    ],
+    "models": [
+      {
+        "id": "Qwen/Qwen2.5-1.5B-Instruct",
+        "license": "Apache-2.0",
+        "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306"
+      },
+      {
+        "id": "Qwen/Qwen2.5-7B-Instruct",
+        "license": "Apache-2.0",
+        "revision": "a09a35458c702b33eeacc393d103063234e8bc28"
+      }
+    ],
+    "order": "Models/cache order ABBA across four repeats; prefix order alternates; paired modes share stage/workload/seed.",
+    "planned_measured_requests_per_hardware": 8192,
+    "planned_measured_requests_total": 16384,
+    "request_timeout_seconds": 90,
+    "schema": "inference-lab-factorial-serving-v1",
+    "server_ready_timeout_seconds": 720,
+    "server_seed": 17,
+    "temperature": 0,
+    "vllm_version": "0.10.2",
+    "warmups_per_stage": 4,
+    "workload_hashes": {
+      "r1-shared-c1": {
+        "measured": "684dd2f33c020acdad802d19f9fee5726fba4e9c131ebccc6781dbddbe982f11",
+        "warmup": "708e399bd75ad3990e7c4652b491d7eca748321bcb4a26574d23633586fa0ab1"
+      },
+      "r1-shared-c16": {
+        "measured": "a51c45fce38eec5505e4807811ac5a3f78e271ae6de2350d5eafd40eaef93585",
+        "warmup": "30b3a05e039f160312778e7d2e580c95728ca299cdff81f8b40c9c207dbe499a"
+      },
+      "r1-shared-c32": {
+        "measured": "17c40a86a402f70cf125616daed216253a8814155165d899538cab9419c204c7",
+        "warmup": "72c7f3bab2dd2232958d320a91d242a3c2d56c364a3c1b8114b1568fc43babd4"
+      },
+      "r1-shared-c4": {
+        "measured": "95fbba4dd306afe7ff0429a4067d7b2ffecac02486f418395973b73be8b8471d",
+        "warmup": "3df6b88351e21aca3419a96f1c29a483ef26ae0988f67cb815936a1584cf73d0"
+      },
+      "r1-unique-c1": {
+        "measured": "bb0eaf44ab6ba2f9f88e10214d0beeb4b51ae0efe562a6c4feab52ca091785fe",
+        "warmup": "588a8645c8fa7de824545dab23a7bb2b9ad23dfcf1b9c684e4b4cae0c9640621"
+      },
+      "r1-unique-c16": {
+        "measured": "0e8639bb173243defbaaa67073ad366885db44e01f9c4b2269a58095a82b0b71",
+        "warmup": "00ddc663acf9c7538b6642695d8bb39fbdba1c1ad4e7c571edecbef3d3ec03b5"
+      },
+      "r1-unique-c32": {
+        "measured": "dc4ac80b8c643fbf1a1bf04ffcf61b72037e51d0bfe0b43d0ec0c6f61897165e",
+        "warmup": "230053d68902cba2b6e75aa6753b9ba67ffc2f1a83a5e879cb3a2738e5a7419b"
+      },
+      "r1-unique-c4": {
+        "measured": "dcf7058d10560a34161e023652483e7c68ab7434c6eba8b8de4649b217bf33d9",
+        "warmup": "f8c3363d8939e6c27a26f4de7bf0a582c156c9cd1d09adb4f18e52da2ed5a105"
+      },
+      "r2-shared-c1": {
+        "measured": "09fe025684416e4eeffa46cf09ca785834b6d330579a16a6429595b311251736",
+        "warmup": "9f98b8a553941cd35fddb3050db655d66dd9d8f7ee2e87bd5a1c7a5ca2eb6ef3"
+      },
+      "r2-shared-c16": {
+        "measured": "aea92189d9047be053bbea3bde9488f695bc83d37e8c290fe6ebe172fb1bc004",
+        "warmup": "e9514142cc7291496d36a210e347f81a74bfe342bc0f1ba3a8308809dfc174d9"
+      },
+      "r2-shared-c32": {
+        "measured": "bf8d8eaeef135aa082f2a1d7c70ba481f41ea5c14c4bfd3cf8e26dd2d3744afe",
+        "warmup": "09ac2cae7a8349adf72f012145e9b805ae150fb4ae734b176bf172ac20f77c7a"
+      },
+      "r2-shared-c4": {
+        "measured": "6c2a9028e3d711cfb1c366ca2c4c8f5df6bd24ce79a1b488e52a4b70eb0d8085",
+        "warmup": "01d0cb580be226baa03b7c3aef6a5625c05bffcdc80b79420a0fc240f94e81ff"
+      },
+      "r2-unique-c1": {
+        "measured": "24ff825465d0c11b930c460280bf57a6044b5f2be562adaf6fbeda8c3350715c",
+        "warmup": "4e2b486cbd0b77197fed09fe9ebfbbfce24915d622239838fbba3c565a11fcf4"
+      },
+      "r2-unique-c16": {
+        "measured": "f1410bb0391043ab06648648d2e585d3ffc49d6fea3beec4cfeebab40a473528",
+        "warmup": "d79dce90c1ff2976ed911facdb5bd1bc391f232e45ddc4853a52d1cf5ca87c05"
+      },
+      "r2-unique-c32": {
+        "measured": "871adaaf4f53b12d44bb1c1148b9bd3ffc789c732e0e6b0e5ab1ee2609ba7fd6",
+        "warmup": "d9af44e923d570f8713fb292df9cf8766fef83ed4a2e84823baf96d0a7a18562"
+      },
+      "r2-unique-c4": {
+        "measured": "1aab1efdd853fdc96ce1da78134e45755c0f2ec5da0c07fb7af9b59429be99f4",
+        "warmup": "c06f8268ff4474dd6f814b6682ac35a55677ea5c967e18fe62af31b4b68c3a5d"
+      },
+      "r3-shared-c1": {
+        "measured": "3d125c19badeb03fe3ff784c879404778b1c856bc95a417437106868d20d62c7",
+        "warmup": "923dd9de23fee23407555b6f05a62c8ad56e61d96876598d9160e5c25e88f25a"
+      },
+      "r3-shared-c16": {
+        "measured": "437b14f3a84cac20300dd1fd92624f76e651a6040b9de8ec37d35ba33d59a97f",
+        "warmup": "b0350c5693d7cc1750761a13d425c5571320aea9f7ddc15f4ecb2b935e2ee136"
+      },
+      "r3-shared-c32": {
+        "measured": "39ea463d9e5f15f9d887c33d55ee21aaf7649a21ca7b400ab0751eca2dda5e15",
+        "warmup": "8ef449731588143d9b77b33773d865e18f6122f968228bbb95fb28bddbebb90c"
+      },
+      "r3-shared-c4": {
+        "measured": "a00766754462de1d45ff809ab8ef5445d39ec563eab02a6e5b0b7da50109f0ac",
+        "warmup": "8265fc99de88a2ded27718cfbb5216c4dbf13926eff0cb12a6482a2129ea5d4a"
+      },
+      "r3-unique-c1": {
+        "measured": "6a3145ccaa21882be0ea5be9a8c4cceba7352e5fefaa4072052eeca5b1cb9705",
+        "warmup": "00c7a37aeffa1fa980d8926221d5d3ae2225ff5b8c75769a18c972d7ba5bce9f"
+      },
+      "r3-unique-c16": {
+        "measured": "8c4e9596677a7d5081083a6f069039d57b036afc89e280435841c63814aadf76",
+        "warmup": "74ed0a2e9452185496ed813c7aa0ed5e5db27c4484fa7090b40ded4e87ad85ed"
+      },
+      "r3-unique-c32": {
+        "measured": "8f1210e1574690341bd7a4a4638633bd4f081014337c2ebb571017d04267dc3a",
+        "warmup": "f9d500c39002ce4ef11de97b824d51c65326bae1cd913e4b10e61e03c9cafe2e"
+      },
+      "r3-unique-c4": {
+        "measured": "19502177b76a551cad494d573317a06f3c44dca7a5ba1309bb350f996d4d163d",
+        "warmup": "17d094c115ac03d280f4b06cbd73e90339e731dfcc37de833fea9aead205f1b9"
+      },
+      "r4-shared-c1": {
+        "measured": "3ccc957b1ba2edb150ba90a05fdb9d69e82b843f58e34b89ad88a916fb9c56c6",
+        "warmup": "a0dba95593310bea13567c4e7ae283aa4e9c131ade9a4c3edee97546e84feb52"
+      },
+      "r4-shared-c16": {
+        "measured": "305b74b2f191db85f03d5de5cc151eeae577127c12f70f1538b7c6166b1f9cb9",
+        "warmup": "4188a9a3bc91ce7cf516d62fa2397ce318edfbd29d3f1375e2a8090081fd6cb6"
+      },
+      "r4-shared-c32": {
+        "measured": "16b486f921c53c583d2444ce51df0761f767f14ccdad6d1f680e40e198853da7",
+        "warmup": "08675b235de17e039df2a535d22686fbbc03eef234266b1f637e1d8fae6492bc"
+      },
+      "r4-shared-c4": {
+        "measured": "aac95e84fe87ab1b13b3d7026b846702e3f0fd015144a79cbc06b715a2b33104",
+        "warmup": "c63f02c85358733d44bf5bd1ba9563ffff17382762fca8830289477b2676e4d1"
+      },
+      "r4-unique-c1": {
+        "measured": "615e770ddb8f514f4b8ba320507e14eefda53601dc17f102d28dfef779644b75",
+        "warmup": "0b33b9221d3455a9ca88b5858f29cf0416506de35a76a1e42148c1ee45944301"
+      },
+      "r4-unique-c16": {
+        "measured": "9afe33397afdeb677e7ffaa705da1ce5bec3f703b9900c86d7677705c2347525",
+        "warmup": "81c9ff16e0ce0bc057a1fcdefad0698ef2735b89f6b951a8fb0e098391bb3838"
+      },
+      "r4-unique-c32": {
+        "measured": "35f9d19448f4e4119aee4218ece7081e85996643591c5594960caba9c11caba3",
+        "warmup": "9cf5fe8d1720344c597714c6d176749af673d59ef0e4f9bfb6937ab53aeef2ef"
+      },
+      "r4-unique-c4": {
+        "measured": "a809b5977c524967bf764a051fbde0fb3024887116420e91cb862e6feec4d5ed",
+        "warmup": "91281004ad1a4e4ca13ba6157b30351faaa07103a13e7352501890ef302d5f24"
+      }
+    }
+  },
+  "frozen_at_utc": "2026-09-24T22:59:41.458852+00:00",
+  "schema": "inference-lab-factorial-serving-v1",
+  "sha256": "a020a05f5f01c9d480116102497801cc26122f6fcafed7dbcd214755664fbee8",
+  "source_commit": "ff3cff9ee458091ef7c6e96494131d9de27f2eeb",
+  "sources": {
+    "inference_lab/__init__.py": "9fb40a39da0de2f2b2074e530163c00b2576cb078351b3d782bee3e12b987815",
+    "inference_lab/benchmark.py": "3a8bcbefaf064507c632045925783568f3c2a824c16bda770da519287831be89",
+    "inference_lab/extension.py": "a262211aa32eb4df60d3a8bab44cbd8973be1967e8b1e2e12f6cd9846c1c3387",
+    "inference_lab/pilot.py": "937c2b410f2629099cea33c96b0d64d5dd8ae255c1dae01150645ac2b85212ee",
+    "inference_lab/pilot_plots.py": "7d99d6cf01c23fd6fafa20ef0dc45023ebd01d99421f439795090d2798553e3e",
+    "inference_lab/pilot_report.py": "a61fa945ae2ef0ab37f3c2b840ddc3052da3061b9a5a5a9d294a087ea8564e94"
+  }
+}
