@@ -15,7 +15,7 @@ A single RTX 4090 completed **1,536 measured requests across 24 stages**, with *
 - Three paired replicates; four concurrency levels; 64 measured requests and four logged warmups per stage. The same 64 synthetic prompts recur across stages, with matched shuffled order within each replicate. Actual prompt lengths were 132–1,058 tokens.
 - Every response finished with `length`, as expected with fixed `min_tokens=max_tokens=128` and `ignore_eos=true`. Measured output volume was 196,608 tokens; 96 warmups bring the logged total to 208,896 tokens.
 - Original raw files were copied byte-for-byte for publication. [Provenance and file hashes](provenance.json) identify the source archive and all copied files. The source archive and its original extraction were not modified by analysis.
-- The GPU was terminated after artifact collection. **Actual billed cost is unconfirmed**: no settled provider charge was available for this report. Cost remains null, not zero.
+- The GPU was terminated after artifact collection. A subsequent [provider billing record](billing.json) reports **$0.225616** for 1,088.584 billed seconds, consistent with the allocation interval. This is whole-pod API accounting, including setup and artifact collection, not an invoice or a steady-state serving price. The performance-only `raw/report.json` leaves its cost field null; billing is attached separately without changing original measurements.
 
 ## Observations
 
@@ -88,7 +88,7 @@ The analysis independently recomputed every stage summary from raw request recor
 
 This pilot covers one GPU, one small model and synthetic repeated prompts. Sixty-four requests per stage and three repeats yield descriptive observations, not production-tail guarantees, hardware-general conclusions or robust population confidence intervals. Cache state persists between warmed stages, and the three pairing directions cannot completely counterbalance temporal drift. The fixed-output workload intentionally forces generation to 128 tokens. No natural-response quality, quantization, speculative-decoding comparison or multi-GPU result was measured.
 
-Client TTFT is time to the first nonempty text chunk, including scheduling and local transport; inter-chunk gaps are not an engine-level token trace. GPU sampling is device-wide. Server log timestamps use the container's local clock, while client timestamps and GPU CSV timestamps are UTC; telemetry joins use the latter two explicit UTC sources. Provider billing was not available, so no dollar-efficiency result is reported.
+Client TTFT is time to the first nonempty text chunk, including scheduling and local transport; inter-chunk gaps are not an engine-level token trace. GPU sampling is device-wide. Server log timestamps use the container's local clock, while client timestamps and GPU CSV timestamps are UTC; telemetry joins use the latter two explicit UTC sources. The separate provider billing receipt covers the entire allocation and is not used to invent stage-specific billed costs or production dollar-efficiency claims.
 
 ## Reproduce the analysis
 

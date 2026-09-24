@@ -1,0 +1,18 @@
+{
+  "source": "RunPod GET /v1/billing/pods, filtered to this study pod",
+  "retrieved_at_utc": "2026-09-24T03:55:27.565306+00:00",
+  "provider_reported_pod_charge_usd": 0.22561634052544832,
+  "provider_reported_billed_ms": 1088584,
+  "active_pods_at_check": 0,
+  "records": [
+    {
+      "amount": 0.22561634052544832,
+      "timeBilledMs": 1088584,
+      "diskSpaceBilledGB": 200,
+      "podId": "bgqxps92aqns4i",
+      "time": "2026-09-24 02:00:00"
+    }
+  ],
+  "provisioned_container_disk_gb": 40,
+  "note": "Whole allocation charge, including setup and artifact collection; not just measured request intervals. Provider diskSpaceBilledGB is retained as returned and is not the provisioned disk size. This is provider API accounting, not an invoice or a steady-state production price."
+}

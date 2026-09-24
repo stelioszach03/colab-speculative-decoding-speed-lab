@@ -5,7 +5,9 @@
     "inference_lab/pilot_report.py": "a61fa945ae2ef0ab37f3c2b840ddc3052da3061b9a5a5a9d294a087ea8564e94"
   },
   "analysis_source_base_commit": "f302da87a8d47456d9d46a85150c25976b99d6fb",
-  "cost_usd_confirmed": null,
+  "billing_receipt_sha256": "23f3df51eae2eb4380a70b6537ef87f1add5d8f276abc543a29a268e2f87c043",
+  "cost_basis": "Provider-reported whole-pod charge retrieved after termination; not an invoice.",
+  "cost_usd_confirmed": 0.22561634052544832,
   "frozen_protocol_sha256": "f2d04b3552289512bfe7216967410963b6a8f3d614946c86a3a0b79c7aaa4e26",
   "measurement_source_commit": "b37bda80e0904485a9e33918f374aa5d0c2f2b60",
   "notes": [
