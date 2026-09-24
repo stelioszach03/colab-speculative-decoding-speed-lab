@@ -1,0 +1,3 @@
+# Deliberately publish only these reviewed synthetic-workload runtime logs.
+!raw/**/server.log
+!raw/**/client.log

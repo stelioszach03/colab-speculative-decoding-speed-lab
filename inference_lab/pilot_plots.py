@@ -33,7 +33,8 @@ def plot(root, output, allow_incomplete=False):
     # Device report is a short nvidia-smi CSV; preserve actual reported GPU name.
     import csv
     gpu_name = next(csv.reader(gpu_line), ['', '', 'Unreported GPU'])[2].strip()
-    figure, axes = plt.subplots(2, 3, figsize=(13.2, 8.8), layout='constrained')
+    figure, axes = plt.subplots(2, 3, figsize=(13.2, 8.8))
+    figure.subplots_adjust(left=.075, right=.985, bottom=.14, top=.82, wspace=.34, hspace=.48)
     colors = {False: '#263b62', True: '#007f78'}
     markers = {1: 'o', 2: 's', 3: '^'}
     panels = [
@@ -72,15 +73,15 @@ def plot(root, output, allow_incomplete=False):
     handles = [Line2D([], [], color=colors[False], linestyle='--', label='Prefix cache OFF'),
                Line2D([], [], color=colors[True], label='Prefix cache ON')]
     handles += [Line2D([], [], color='#697484', marker=markers[replicate], linestyle='', label=f'Replicate {replicate}') for replicate in (1, 2, 3)]
-    figure.legend(handles=handles, loc='outside upper center', ncol=5, frameon=False)
+    figure.legend(handles=handles, loc='upper center', bbox_to_anchor=(.5, .90), ncol=5, frameon=False)
     failures = sum(row['failed'] for row in result['stages'])
     requested = sum(row['requests'] for row in result['stages'])
     mismatches = sum(row['fixed_output_length_mismatches'] for row in result['stages'])
     label = 'PARTIAL EXPERIMENT · ' if incomplete else ''
-    figure.suptitle(label + f"{plan['model'].split('/')[-1]} · {gpu_name}\nvLLM {plan['vllm_version']} · 128-token fixed decode · warm synthetic workload", fontsize=15)
-    figure.supxlabel(f'{requested:,} measured requests; {failures} failures; {mismatches} output-length mismatches. '
+    figure.suptitle(label + f"{plan['model'].split('/')[-1]} · {gpu_name}\nvLLM {plan['vllm_version']} · 128-token fixed decode · warm synthetic workload", fontsize=15, y=.98)
+    figure.text(.5, .04, f'{requested:,} measured requests; {failures} failures; {mismatches} output-length mismatches. '
                      'Every replicate shown; no population confidence intervals.\n'
-                     'p95 values are sample percentiles. Text agreement is not answer quality. VRAM includes allocated KV cache.', fontsize=9)
+                     'p95 values are sample percentiles. Text agreement is not answer quality. VRAM includes allocated KV cache.', fontsize=9, ha='center')
     output.mkdir(parents=True, exist_ok=True)
     paths = []
     for extension in ('png', 'svg', 'pdf'):
@@ -90,6 +91,8 @@ def plot(root, output, allow_incomplete=False):
     plt.close(figure)
     metadata = {'source_status': result['source_status'], 'incomplete': incomplete,
                 'plot_library': {'matplotlib': matplotlib.__version__},
+                'plot_script_sha256': hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+                'aggregation_script_sha256': hashlib.sha256((Path(__file__).parent / 'pilot_report.py').read_bytes()).hexdigest(),
                 'measured_requests': requested, 'failures': failures,
                 'source_file_sha256': result['source_file_sha256'],
                 'figure_sha256': {path.name: hashlib.sha256(path.read_bytes()).hexdigest() for path in paths}}

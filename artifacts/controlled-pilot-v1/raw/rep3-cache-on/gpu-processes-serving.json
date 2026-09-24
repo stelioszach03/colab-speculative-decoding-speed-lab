@@ -1,0 +1,10 @@
+{
+  "command": [
+    "nvidia-smi",
+    "--query-compute-apps=gpu_uuid,pid,process_name,used_memory",
+    "--format=csv"
+  ],
+  "returncode": 0,
+  "stderr": "",
+  "stdout": "gpu_uuid, pid, process_name, used_gpu_memory [MiB]\nGPU-740af22d-b5b8-c3d3-63ea-bc506de7f0f7, 4178, VLLM::EngineCore, 19852 MiB\n"
+}

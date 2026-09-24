@@ -2,7 +2,7 @@
 
 A serving-measurement toolkit growing from the recorded Speculative Decoding Speed Lab. The repository name and historical notebook remain unchanged.
 
-**Status:** the new streaming benchmark harness is implemented and tested against an offline fixture server. **No new GPU serving results have been collected.** The earlier Colab measurements below remain historical, unpublished experiments, not a general speed or quality guarantee.
+**Status:** a [controlled GPU pilot](artifacts/controlled-pilot-v1/RESULTS.md) completed 1,536 measured requests on one RTX 4090 with Qwen2.5-1.5B-Instruct and vLLM 0.10.2. All requests completed with the prescribed 128-token output length. Prefix-cache modes produced identical text in only 210/768 paired comparisons, so the report makes **no lossless speedup or answer-quality claim**. The earlier Colab measurements below remain separate historical, unpublished experiments.
 
 ## Streaming serving benchmark
 
@@ -21,7 +21,7 @@ python -m inference_lab.benchmark --model YOUR_ACTUAL_SERVED_MODEL_ID \
 
 Read [the serving protocol and metric definitions](docs/SERVING_BENCHMARK.md) before using results. The six original bundled prompts are synthetic smoke workloads. They do not establish representative serving performance.
 
-The separate [controlled GPU pilot v1](docs/CONTROLLED_PILOT_V1.md) now fixes a model revision, container digest, 64 synthetic prompts, cache OFF/ON settings and three paired concurrency sweeps. Its runner records real NVIDIA-smi telemetry and preserves failures, request traces and output-hash comparisons. `python -m inference_lab.pilot` prints the plan without allocating hardware or contacting an endpoint. **A prepared protocol is not a GPU result**; actual measurements must be collected and reviewed before reporting outcomes. Cost, output quality, quantization and speculative-decoding comparisons are not established by this pilot.
+The [controlled GPU pilot v1](docs/CONTROLLED_PILOT_V1.md) fixes a model revision, container digest, 64 synthetic prompts, cache OFF/ON settings and three paired concurrency sweeps. [Raw evidence and measured figures](artifacts/controlled-pilot-v1/) include NVIDIA-smi telemetry, request traces and output-hash comparisons. At concurrency 32, observed throughput ranged from 3,594–3,614 tokens/s with caching OFF and 4,160–4,712 with it ON; differing text and warm-state/order effects limit the comparison. `python -m inference_lab.pilot` prints the plan without allocating hardware or contacting an endpoint. Actual billed cost remains unconfirmed. Output quality, quantization and speculative-decoding improvements are not established by this pilot.
 
 ## Recorded results
 

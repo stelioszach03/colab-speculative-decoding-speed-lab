@@ -1,0 +1,426 @@
+{
+  "cache_policy": "Fresh server per cell; prefix cache persists between four warmed stages within a cell.",
+  "cells": [
+    {
+      "concurrency": [
+        1,
+        4,
+        16,
+        32
+      ],
+      "id": "rep1-cache-off",
+      "prefix_cache": false,
+      "replicate": 1,
+      "seed": 18
+    },
+    {
+      "concurrency": [
+        1,
+        4,
+        16,
+        32
+      ],
+      "id": "rep1-cache-on",
+      "prefix_cache": true,
+      "replicate": 1,
+      "seed": 18
+    },
+    {
+      "concurrency": [
+        32,
+        16,
+        4,
+        1
+      ],
+      "id": "rep2-cache-on",
+      "prefix_cache": true,
+      "replicate": 2,
+      "seed": 19
+    },
+    {
+      "concurrency": [
+        32,
+        16,
+        4,
+        1
+      ],
+      "id": "rep2-cache-off",
+      "prefix_cache": false,
+      "replicate": 2,
+      "seed": 19
+    },
+    {
+      "concurrency": [
+        4,
+        32,
+        1,
+        16
+      ],
+      "id": "rep3-cache-off",
+      "prefix_cache": false,
+      "replicate": 3,
+      "seed": 20
+    },
+    {
+      "concurrency": [
+        4,
+        32,
+        1,
+        16
+      ],
+      "id": "rep3-cache-on",
+      "prefix_cache": true,
+      "replicate": 3,
+      "seed": 20
+    }
+  ],
+  "experiment_deadline_s": 2700,
+  "fixed_output_tokens": true,
+  "gpu_sample_interval_ms": 500,
+  "image": "vllm/vllm-openai@sha256:df2607b26bdda2875de4832f4d08da0055b4b6e3570347f3a849bcc652771dd6",
+  "license": "Apache-2.0",
+  "limitations": [
+    "Single GPU and one model; descriptive pilot, no population-level confidence claim.",
+    "Fixed synthetic output length; generated text quality is not evaluated.",
+    "Warm repeated workload favors reuse; not representative production traffic.",
+    "Prefix cache effects may include runtime variation; matching output hashes are reported separately.",
+    "No quantization or speculative-decoding treatment in this pilot."
+  ],
+  "max_tokens": 128,
+  "maximum_requested_output_tokens": 208896,
+  "model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "request_timeout_s": 60,
+  "requests_per_stage": 64,
+  "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+  "schema": "inference-lab-controlled-pilot-v1",
+  "server_readiness_timeout_s": 480,
+  "strata": [
+    {
+      "context_words": 64,
+      "id": "shared-w64-00",
+      "prefix_stratum": "shared"
+    },
+    {
+      "context_words": 64,
+      "id": "shared-w64-01",
+      "prefix_stratum": "shared"
+    },
+    {
+      "context_words": 64,
+      "id": "shared-w64-02",
+      "prefix_stratum": "shared"
+    },
+    {
+      "context_words": 64,
+      "id": "shared-w64-03",
+      "prefix_stratum": "shared"
+    },
+    {
+      "context_words": 64,
+      "id": "shared-w64-04",
+      "prefix_stratum": "shared"
+    },
+    {
+      "context_words": 64,
+      "id": "shared-w64-05",
+      "prefix_stratum": "shared"
+    },
+    {
+      "context_words": 64,
+      "id": "shared-w64-06",
+      "prefix_stratum": "shared"
+    },
+    {
+      "context_words": 64,
+      "id": "shared-w64-07",
+      "prefix_stratum": "shared"
+    },
+    {
+      "context_words": 64,
+      "id": "unique-w64-00",
+      "prefix_stratum": "unique"
+    },
+    {
+      "context_words": 64,
+      "id": "unique-w64-01",
+      "prefix_stratum": "unique"
+    },
+    {
+      "context_words": 64,
+      "id": "unique-w64-02",
+      "prefix_stratum": "unique"
+    },
+    {
+      "context_words": 64,
+      "id": "unique-w64-03",
+      "prefix_stratum": "unique"
+    },
+    {
+      "context_words": 64,
+      "id": "unique-w64-04",
+      "prefix_stratum": "unique"
+    },
+    {
+      "context_words": 64,
+      "id": "unique-w64-05",
+      "prefix_stratum": "unique"
+    },
+    {
+      "context_words": 64,
+      "id": "unique-w64-06",
+      "prefix_stratum": "unique"
+    },
+    {
+      "context_words": 64,
+      "id": "unique-w64-07",
+      "prefix_stratum": "unique"
+    },
+    {
+      "context_words": 192,
+      "id": "shared-w192-00",
+      "prefix_stratum": "shared"
+    },
+    {
+      "context_words": 192,
+      "id": "shared-w192-01",
+      "prefix_stratum": "shared"
+    },
+    {
+      "context_words": 192,
+      "id": "shared-w192-02",
+      "prefix_stratum": "shared"
+    },
+    {
+      "context_words": 192,
+      "id": "shared-w192-03",
+      "prefix_stratum": "shared"
+    },
+    {
+      "context_words": 192,
+      "id": "shared-w192-04",
+      "prefix_stratum": "shared"
+    },
+    {
+      "context_words": 192,
+      "id": "shared-w192-05",
+      "prefix_stratum": "shared"
+    },
+    {
+      "context_words": 192,
+      "id": "shared-w192-06",
+      "prefix_stratum": "shared"
+    },
+    {
+      "context_words": 192,
+      "id": "shared-w192-07",
+      "prefix_stratum": "shared"
+    },
+    {
+      "context_words": 192,
+      "id": "unique-w192-00",
+      "prefix_stratum": "unique"
+    },
+    {
+      "context_words": 192,
+      "id": "unique-w192-01",
+      "prefix_stratum": "unique"
+    },
+    {
+      "context_words": 192,
+      "id": "unique-w192-02",
+      "prefix_stratum": "unique"
+    },
+    {
+      "context_words": 192,
+      "id": "unique-w192-03",
+      "prefix_stratum": "unique"
+    },
+    {
+      "context_words": 192,
+      "id": "unique-w192-04",
+      "prefix_stratum": "unique"
+    },
+    {
+      "context_words": 192,
+      "id": "unique-w192-05",
+      "prefix_stratum": "unique"
+    },
+    {
+      "context_words": 192,
+      "id": "unique-w192-06",
+      "prefix_stratum": "unique"
+    },
+    {
+      "context_words": 192,
+      "id": "unique-w192-07",
+      "prefix_stratum": "unique"
+    },
+    {
+      "context_words": 448,
+      "id": "shared-w448-00",
+      "prefix_stratum": "shared"
+    },
+    {
+      "context_words": 448,
+      "id": "shared-w448-01",
+      "prefix_stratum": "shared"
+    },
+    {
+      "context_words": 448,
+      "id": "shared-w448-02",
+      "prefix_stratum": "shared"
+    },
+    {
+      "context_words": 448,
+      "id": "shared-w448-03",
+      "prefix_stratum": "shared"
+    },
+    {
+      "context_words": 448,
+      "id": "shared-w448-04",
+      "prefix_stratum": "shared"
+    },
+    {
+      "context_words": 448,
+      "id": "shared-w448-05",
+      "prefix_stratum": "shared"
+    },
+    {
+      "context_words": 448,
+      "id": "shared-w448-06",
+      "prefix_stratum": "shared"
+    },
+    {
+      "context_words": 448,
+      "id": "shared-w448-07",
+      "prefix_stratum": "shared"
+    },
+    {
+      "context_words": 448,
+      "id": "unique-w448-00",
+      "prefix_stratum": "unique"
+    },
+    {
+      "context_words": 448,
+      "id": "unique-w448-01",
+      "prefix_stratum": "unique"
+    },
+    {
+      "context_words": 448,
+      "id": "unique-w448-02",
+      "prefix_stratum": "unique"
+    },
+    {
+      "context_words": 448,
+      "id": "unique-w448-03",
+      "prefix_stratum": "unique"
+    },
+    {
+      "context_words": 448,
+      "id": "unique-w448-04",
+      "prefix_stratum": "unique"
+    },
+    {
+      "context_words": 448,
+      "id": "unique-w448-05",
+      "prefix_stratum": "unique"
+    },
+    {
+      "context_words": 448,
+      "id": "unique-w448-06",
+      "prefix_stratum": "unique"
+    },
+    {
+      "context_words": 448,
+      "id": "unique-w448-07",
+      "prefix_stratum": "unique"
+    },
+    {
+      "context_words": 896,
+      "id": "shared-w896-00",
+      "prefix_stratum": "shared"
+    },
+    {
+      "context_words": 896,
+      "id": "shared-w896-01",
+      "prefix_stratum": "shared"
+    },
+    {
+      "context_words": 896,
+      "id": "shared-w896-02",
+      "prefix_stratum": "shared"
+    },
+    {
+      "context_words": 896,
+      "id": "shared-w896-03",
+      "prefix_stratum": "shared"
+    },
+    {
+      "context_words": 896,
+      "id": "shared-w896-04",
+      "prefix_stratum": "shared"
+    },
+    {
+      "context_words": 896,
+      "id": "shared-w896-05",
+      "prefix_stratum": "shared"
+    },
+    {
+      "context_words": 896,
+      "id": "shared-w896-06",
+      "prefix_stratum": "shared"
+    },
+    {
+      "context_words": 896,
+      "id": "shared-w896-07",
+      "prefix_stratum": "shared"
+    },
+    {
+      "context_words": 896,
+      "id": "unique-w896-00",
+      "prefix_stratum": "unique"
+    },
+    {
+      "context_words": 896,
+      "id": "unique-w896-01",
+      "prefix_stratum": "unique"
+    },
+    {
+      "context_words": 896,
+      "id": "unique-w896-02",
+      "prefix_stratum": "unique"
+    },
+    {
+      "context_words": 896,
+      "id": "unique-w896-03",
+      "prefix_stratum": "unique"
+    },
+    {
+      "context_words": 896,
+      "id": "unique-w896-04",
+      "prefix_stratum": "unique"
+    },
+    {
+      "context_words": 896,
+      "id": "unique-w896-05",
+      "prefix_stratum": "unique"
+    },
+    {
+      "context_words": 896,
+      "id": "unique-w896-06",
+      "prefix_stratum": "unique"
+    },
+    {
+      "context_words": 896,
+      "id": "unique-w896-07",
+      "prefix_stratum": "unique"
+    }
+  ],
+  "telemetry_scope": "nvidia-smi device-wide measurements on the one visible GPU; not per-process utilization.",
+  "temperature": 0,
+  "total_measured_requests": 1536,
+  "total_requests_with_warmup": 1632,
+  "vllm_version": "0.10.2",
+  "warmup_per_stage": 4,
+  "workload_sha256": "206366a72efce602ddf8b64920d3eb6ffede80585a03a3751637f337690fb8cb"
+}

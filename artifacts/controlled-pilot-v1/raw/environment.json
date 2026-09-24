@@ -1,0 +1,12 @@
+{
+  "client_sha256": "3a8bcbefaf064507c632045925783568f3c2a824c16bda770da519287831be89",
+  "packages": {
+    "huggingface-hub": "0.34.4",
+    "torch": "2.8.0+cu128",
+    "transformers": "4.56.1",
+    "vllm": "0.10.2"
+  },
+  "platform": "Linux-6.8.0-134-generic-x86_64-with-glibc2.35",
+  "python": "3.12.11",
+  "runner_sha256": "937c2b410f2629099cea33c96b0d64d5dd8ae255c1dae01150645ac2b85212ee"
+}

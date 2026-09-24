@@ -1,0 +1,1863 @@
+{
+  "cost_usd": null,
+  "incomplete_cells": [],
+  "integrity_issues": [],
+  "limitations": [
+    "Single GPU and one model; descriptive pilot, no population-level confidence claim.",
+    "Fixed synthetic output length; generated text quality is not evaluated.",
+    "Warm repeated workload favors reuse; not representative production traffic.",
+    "Prefix cache effects may include runtime variation; matching output hashes are reported separately.",
+    "No quantization or speculative-decoding treatment in this pilot."
+  ],
+  "output_agreement": [
+    {
+      "concurrency": 1,
+      "exact_text_hash_matches": 21,
+      "not_a_quality_score": true,
+      "paired_successful_requests": 64,
+      "replicate": 1
+    },
+    {
+      "concurrency": 4,
+      "exact_text_hash_matches": 18,
+      "not_a_quality_score": true,
+      "paired_successful_requests": 64,
+      "replicate": 1
+    },
+    {
+      "concurrency": 16,
+      "exact_text_hash_matches": 11,
+      "not_a_quality_score": true,
+      "paired_successful_requests": 64,
+      "replicate": 1
+    },
+    {
+      "concurrency": 32,
+      "exact_text_hash_matches": 19,
+      "not_a_quality_score": true,
+      "paired_successful_requests": 64,
+      "replicate": 1
+    },
+    {
+      "concurrency": 1,
+      "exact_text_hash_matches": 19,
+      "not_a_quality_score": true,
+      "paired_successful_requests": 64,
+      "replicate": 2
+    },
+    {
+      "concurrency": 4,
+      "exact_text_hash_matches": 17,
+      "not_a_quality_score": true,
+      "paired_successful_requests": 64,
+      "replicate": 2
+    },
+    {
+      "concurrency": 16,
+      "exact_text_hash_matches": 24,
+      "not_a_quality_score": true,
+      "paired_successful_requests": 64,
+      "replicate": 2
+    },
+    {
+      "concurrency": 32,
+      "exact_text_hash_matches": 9,
+      "not_a_quality_score": true,
+      "paired_successful_requests": 64,
+      "replicate": 2
+    },
+    {
+      "concurrency": 1,
+      "exact_text_hash_matches": 19,
+      "not_a_quality_score": true,
+      "paired_successful_requests": 64,
+      "replicate": 3
+    },
+    {
+      "concurrency": 4,
+      "exact_text_hash_matches": 15,
+      "not_a_quality_score": true,
+      "paired_successful_requests": 64,
+      "replicate": 3
+    },
+    {
+      "concurrency": 16,
+      "exact_text_hash_matches": 17,
+      "not_a_quality_score": true,
+      "paired_successful_requests": 64,
+      "replicate": 3
+    },
+    {
+      "concurrency": 32,
+      "exact_text_hash_matches": 22,
+      "not_a_quality_score": true,
+      "paired_successful_requests": 64,
+      "replicate": 3
+    }
+  ],
+  "schema": "inference-lab-controlled-pilot-v1-report",
+  "source_file_sha256": {
+    "environment.json": "22c87239afa8c5e7a86810b32ae8515492d02df7ed35a3266d8f06cde0ed838d",
+    "gpu-environment.json": "b565603be83db72fc7865b4e0a7469c1d8aaba67f1a1cc215b244a50cd9f0086",
+    "gpu-identity.json": "3c7619bf03025aaa18839f87522f3021e15656ead050880e07878ea0c27bc41e",
+    "gpu-processes-before.json": "629c1ca83e7b0ebf064c76e2291289a0f28a44869c4fd2cd621bf0e7f3c413b4",
+    "manifest.json": "a0e6206aa21cf9fb06861b1cfc08c87caa7d96ee6ce30b0d6669780d20b11994",
+    "protocol.json": "f2d04b3552289512bfe7216967410963b6a8f3d614946c86a3a0b79c7aaa4e26",
+    "rep1-cache-off/client.log": "2c0fb82167c61cc9516fadd3588f294db06c3cbd6f1e065c935b2066b448a6ae",
+    "rep1-cache-off/client/manifest.json": "72d97d5a5d240581089376f6d1ded2b4d9648eabdf8e23996ebfbb3616bd4b23",
+    "rep1-cache-off/client/requests.jsonl": "26447d1456ca6cfb2e483e0b4a7a1c1e23fff0abe96b2666dcc1bed181021bf1",
+    "rep1-cache-off/client/summary.json": "e7c917bd6161386e5374b9d06c01ae07a15efb59c2c577ce35860054322599a8",
+    "rep1-cache-off/client/workload.jsonl": "8a6cd7f78c41aa78e6a8847779eb1402daabcf0a3eeac32f5df4baa608702b65",
+    "rep1-cache-off/gpu-processes-serving.json": "12de848f25fe52892b91a0f57e1ac84d2272ca6c28fdba954e102fe57377219d",
+    "rep1-cache-off/gpu-telemetry.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "rep1-cache-off/gpu.csv": "d489f8254e13cc50958cab900bb0da1c0593d2634551c44153ab1524183ead63",
+    "rep1-cache-off/metrics-after.txt": "9e618a30ed59e91e22fd6a88b82d5c54c066507c99cad77b5f06e775420a4e39",
+    "rep1-cache-off/metrics-before.txt": "1d9ec8f87bac0f923cdf6d77f9df6b9cb05c2543864d66c4c9f005ed497b9586",
+    "rep1-cache-off/server-settings.json": "a8f77cfb0e49cce810955ff43e3b984dc9a4026655c73dae76d5c2294c39c3f6",
+    "rep1-cache-off/server.log": "a12609d9ac2a862caf72910d5ace387054bc126fa97d137af4ff78dbd89dbef3",
+    "rep1-cache-on/client.log": "10e2126e65318d704469d54ded39f5900b5e016700a3bdfccb6f53f02f462e2e",
+    "rep1-cache-on/client/manifest.json": "23c1db5fccfdf863d250e0a95591843cabd35271a84b0ef3ea0ea6d0f332ff7f",
+    "rep1-cache-on/client/requests.jsonl": "ee48a4da72818f3a6a99a2f6e3662c61eaaa010c1dad19262a1103784de1713f",
+    "rep1-cache-on/client/summary.json": "18d8ae755cf0b68d7b9efa0b21e139fd49f260d1f4d1df023df842411c58123e",
+    "rep1-cache-on/client/workload.jsonl": "8a6cd7f78c41aa78e6a8847779eb1402daabcf0a3eeac32f5df4baa608702b65",
+    "rep1-cache-on/gpu-processes-serving.json": "6a862839e790964b206dc225c40df2f73567bdd59b5351eea53e6f0a9d3025fd",
+    "rep1-cache-on/gpu-telemetry.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "rep1-cache-on/gpu.csv": "27ef87d227cd607e3bd3dca708edcfea6a9551447df9052ad0eff8a1ccc5844a",
+    "rep1-cache-on/metrics-after.txt": "44a29933c31d6e88f81699fd20c6142f8f86870d736254e591ec10f133641ae3",
+    "rep1-cache-on/metrics-before.txt": "1fd1128e98384aca2c1a6eaa091cf147ba709af6b2c060c5fa4c1363ebc972d3",
+    "rep1-cache-on/server-settings.json": "9c902018e68f02fd62100d048b23b1e0fc3d6a8c7ae722d98e01368234c02034",
+    "rep1-cache-on/server.log": "8f3a9cfe2c0f58c0113e7a0396554bd686217928981b51c4fec40a51acefff35",
+    "rep2-cache-off/client.log": "d9dc7250b0047c185146a204a351b5c54775cd6d4266566ce9d992511e2c877c",
+    "rep2-cache-off/client/manifest.json": "70d18bb8f03acdaad83eae6101341287b0b5ee1ccf69225b7c041698b0ccfcd8",
+    "rep2-cache-off/client/requests.jsonl": "b8024deacd43d0cdad3859024ebccefb5ce0d173b2f69dca10da65d2af16b814",
+    "rep2-cache-off/client/summary.json": "308b005994cc3d6bf5ec5d9820a6d5da54ee13c6f8cede3fde5156b9aab2b473",
+    "rep2-cache-off/client/workload.jsonl": "5a25538ba4495c6cf77941169615bdde0b5c2a8948a00c8c3cfc732bfd4107bd",
+    "rep2-cache-off/gpu-processes-serving.json": "8ab81d39277e190cfff8a9384c3006689c77c1757ce5a685806026d1159d522f",
+    "rep2-cache-off/gpu-telemetry.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "rep2-cache-off/gpu.csv": "61564ca85bd2f4ce49e4150b39c62f74b26239386183e46813ec6499fcf18918",
+    "rep2-cache-off/metrics-after.txt": "9e64ded490b4e63886d5c352d7a6cbd431c105f61aa4ee69ad6d11eb300058b9",
+    "rep2-cache-off/metrics-before.txt": "ddd5121a27206f90451c39d2f469316d571bee36b6ea65fdc2a095b77f1a02cd",
+    "rep2-cache-off/server-settings.json": "56efc9c5d0c190133d02fb0c038a204b8f029259f677c8baaf58bd2242f2d230",
+    "rep2-cache-off/server.log": "e8ddde6902e64e02d92947293e9d510bf8a669af5e89b2e84f6c89def6e1a66c",
+    "rep2-cache-on/client.log": "80c155834e2b4270b4e1cdf15c9ffbe5c162c2b8571e093266ac08b0083d478c",
+    "rep2-cache-on/client/manifest.json": "e6df0f39ef6f404d396e2002d30c579d9fff7460f59b6355b91d9be61b36e713",
+    "rep2-cache-on/client/requests.jsonl": "4fb78851d1866f4a790a7926fa87d3cdb11592cf21d35d97db155c1edc20fee8",
+    "rep2-cache-on/client/summary.json": "163872912d36b34d1574f0f86ce572cfcdc47bee665bccbbe8d406a0334beb6b",
+    "rep2-cache-on/client/workload.jsonl": "5a25538ba4495c6cf77941169615bdde0b5c2a8948a00c8c3cfc732bfd4107bd",
+    "rep2-cache-on/gpu-processes-serving.json": "5359c2242389a412c236d08ae65494ac49987d2224fa1bae702b2d82c366dd1b",
+    "rep2-cache-on/gpu-telemetry.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "rep2-cache-on/gpu.csv": "0d227bab4f7e3250718c0bb11c46bc73b0aed728da7f8122fd337c9e8ca071f8",
+    "rep2-cache-on/metrics-after.txt": "c9b51f9ced56886fea143596e42bfe0c37d0d85620e9cf637569290ee4c46256",
+    "rep2-cache-on/metrics-before.txt": "ac63a5ebf6a31d3dfa170c03a9a8f8384bbfb1c060e451db614bbc280ff3230e",
+    "rep2-cache-on/server-settings.json": "1d869a60204ceac6664c55d1291ab642326e9f692765a9215fda24ca3daf4f45",
+    "rep2-cache-on/server.log": "a1281983bb6f703c09845ec11597a3e6068b83820a00f2554e62c43cac1027a6",
+    "rep3-cache-off/client.log": "40c95bc42f2625fdb03c6672d2565d884ce495e89bc3eb7892f58dcf07b5fc8f",
+    "rep3-cache-off/client/manifest.json": "f1a7a63f3ca06b86d1c42443d4b376e3f20226c41d32dd1a37a8f200b96e5f9e",
+    "rep3-cache-off/client/requests.jsonl": "447b198aef8c5809d97a0f4e75b547b0c2a948df2a64a7de078cfdf89c4e3666",
+    "rep3-cache-off/client/summary.json": "2f25f5f1c8347ec7f240f9e804f01582d33d55caf019458bcdd4d58456d51c87",
+    "rep3-cache-off/client/workload.jsonl": "6f88b5a7ec17a52bf1d031bb3a684e89fd13f659e3fb0c0b1fdc8b6665f06e2f",
+    "rep3-cache-off/gpu-processes-serving.json": "5e3b8599bbba5ea1ffee709696957543286947235213121e295f325460e00e48",
+    "rep3-cache-off/gpu-telemetry.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "rep3-cache-off/gpu.csv": "205d1f9d36e9fca359c8678d7dd3ab15c1e0f5018887e716bd5a9c92f62f0ecc",
+    "rep3-cache-off/metrics-after.txt": "7aa4f5d35ef2069ae5d9583067cbaf1476dfde0b379626a2803612f65b53ca51",
+    "rep3-cache-off/metrics-before.txt": "7be03ac2b4240204e33ed66d7a7c64ba7b54a5a6317fe96b436d332a221f694a",
+    "rep3-cache-off/server-settings.json": "77f646da7af96124580ceb86d384bf2c257efd009996cf475e3237ae6efe6f5f",
+    "rep3-cache-off/server.log": "c4a0880b7ed228adf1d24209dc6d9d22691a24eef46d0473861613ab7d46b491",
+    "rep3-cache-on/client.log": "89291cf89814cc0ce11ecc5739ebc16ceaf1a4b75ec4c185f8ade920228a3461",
+    "rep3-cache-on/client/manifest.json": "7d0b6370ce51b6407858bf5b9b1c1e66f37f988c0604373311bbb4839f0d26e5",
+    "rep3-cache-on/client/requests.jsonl": "a47f61e76a3a14ee5f5bd75157c71353eda410bac78d93978ec577e75e415139",
+    "rep3-cache-on/client/summary.json": "689220dd0c1cbff6df53de48a07d5244ef6b206f808842db9babfb9b6f992f56",
+    "rep3-cache-on/client/workload.jsonl": "6f88b5a7ec17a52bf1d031bb3a684e89fd13f659e3fb0c0b1fdc8b6665f06e2f",
+    "rep3-cache-on/gpu-processes-serving.json": "c6b063475a732e792f0876c0ff1f9e450f27caeb43c9bf30f71634f1401acf39",
+    "rep3-cache-on/gpu-telemetry.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "rep3-cache-on/gpu.csv": "df88837555594e40f08d5d57431d9001bb35b9def96fa417fd4a7d9187b33c1f",
+    "rep3-cache-on/metrics-after.txt": "6d1ae93b9f25af79671319c6e2093954db1527177763ee5b134fd1a14b3cdfe0",
+    "rep3-cache-on/metrics-before.txt": "7a77343680e15744a85f81672d616b3dacf1f438cdc43c1e13a2f99d31fdd01d",
+    "rep3-cache-on/server-settings.json": "e71541eaf6313129da0a1b77973c0bea60eab17f6dcc5c420b24d866b6f8f021",
+    "rep3-cache-on/server.log": "44b770f31155ee186d537d691ff3ca509621404256319bcae1fef62cd534802d",
+    "workload.jsonl": "206366a72efce602ddf8b64920d3eb6ffede80585a03a3751637f337690fb8cb"
+  },
+  "source_status": "completed",
+  "stages": [
+    {
+      "cell": "rep1-cache-off",
+      "completion_tokens": 8192,
+      "completion_tokens_per_s": 202.38197251788552,
+      "concurrency": 1,
+      "elapsed_s": 40.477913610986434,
+      "failed": 0,
+      "failures_by_kind": {},
+      "finished_at": "2026-09-24T02:25:21.273962+00:00",
+      "fixed_output_length_mismatches": 0,
+      "gpu_memory_mean_mib": 20010.0,
+      "gpu_memory_peak_mib": 20010.0,
+      "gpu_power_w": {
+        "count": 81,
+        "mean": 261.6995061728395,
+        "p50": 261.69,
+        "p95": 265.18,
+        "p99": 266.172
+      },
+      "gpu_sample_count": 81,
+      "gpu_telemetry_scope": "nvidia-smi device-wide measurements on the one visible GPU; not per-process utilization.",
+      "gpu_utilization_percent": {
+        "count": 81,
+        "mean": 85.90123456790124,
+        "p50": 87.0,
+        "p95": 88.0,
+        "p99": 88.0
+      },
+      "itl_stream_s": {
+        "count": 8128,
+        "mean": 0.004812282584794943,
+        "p50": 0.004804013995453715,
+        "p95": 0.004870227861101739,
+        "p99": 0.0050439113585161975
+      },
+      "latency_all_s": {
+        "count": 64,
+        "mean": 0.6323459158470541,
+        "p50": 0.6294253005034989,
+        "p95": 0.6488709838056821,
+        "p99": 0.6501743889463251
+      },
+      "latency_success_s": {
+        "count": 64,
+        "mean": 0.6323459158470541,
+        "p50": 0.6294253005034989,
+        "p95": 0.6488709838056821,
+        "p99": 0.6501743889463251
+      },
+      "prefix_cache": false,
+      "replicate": 1,
+      "requests": 64,
+      "started_at": "2026-09-24T02:24:40.794152+00:00",
+      "successful": 64,
+      "successful_requests_per_s": 1.5811091602959806,
+      "tpot_s": {
+        "count": 64,
+        "mean": 0.004812282584794943,
+        "p50": 0.0048077193032226,
+        "p95": 0.004848656983034113,
+        "p99": 0.004868154663750242
+      },
+      "ttft_s": {
+        "count": 64,
+        "mean": 0.021085735359520186,
+        "p50": 0.018951791484141722,
+        "p95": 0.03260078425519168,
+        "p99": 0.03330911027180264
+      }
+    },
+    {
+      "cell": "rep1-cache-off",
+      "completion_tokens": 8192,
+      "completion_tokens_per_s": 660.7424069061875,
+      "concurrency": 4,
+      "elapsed_s": 12.398175014008302,
+      "failed": 0,
+      "failures_by_kind": {},
+      "finished_at": "2026-09-24T02:25:36.231223+00:00",
+      "fixed_output_length_mismatches": 0,
+      "gpu_memory_mean_mib": 20010.0,
+      "gpu_memory_peak_mib": 20010.0,
+      "gpu_power_w": {
+        "count": 24,
+        "mean": 233.53083333333333,
+        "p50": 231.57999999999998,
+        "p95": 252.26299999999998,
+        "p99": 258.8115
+      },
+      "gpu_sample_count": 24,
+      "gpu_telemetry_scope": "nvidia-smi device-wide measurements on the one visible GPU; not per-process utilization.",
+      "gpu_utilization_percent": {
+        "count": 24,
+        "mean": 88.20833333333333,
+        "p50": 89.0,
+        "p95": 90.69999999999999,
+        "p99": 91.0
+      },
+      "itl_stream_s": {
+        "count": 8128,
+        "mean": 0.0057722770765229955,
+        "p50": 0.005699780493159778,
+        "p95": 0.005821736346115358,
+        "p99": 0.006316487646545266
+      },
+      "latency_all_s": {
+        "count": 64,
+        "mean": 0.774539528173591,
+        "p50": 0.7768375190062216,
+        "p95": 0.7961380220687715,
+        "p99": 0.801723826273228
+      },
+      "latency_success_s": {
+        "count": 64,
+        "mean": 0.774539528173591,
+        "p50": 0.7768375190062216,
+        "p95": 0.7961380220687715,
+        "p99": 0.801723826273228
+      },
+      "prefix_cache": false,
+      "replicate": 1,
+      "requests": 64,
+      "started_at": "2026-09-24T02:25:23.831189+00:00",
+      "successful": 64,
+      "successful_requests_per_s": 5.16205005395459,
+      "tpot_s": {
+        "count": 64,
+        "mean": 0.0057722770765229955,
+        "p50": 0.00572916769684296,
+        "p95": 0.006011366900047434,
+        "p99": 0.006054009323298938
+      },
+      "ttft_s": {
+        "count": 64,
+        "mean": 0.04114534520522284,
+        "p50": 0.0412045789998956,
+        "p95": 0.06464062239974737,
+        "p99": 0.06569200644938973
+      }
+    },
+    {
+      "cell": "rep1-cache-off",
+      "completion_tokens": 8192,
+      "completion_tokens_per_s": 2301.8262221262185,
+      "concurrency": 16,
+      "elapsed_s": 3.5589133190223947,
+      "failed": 0,
+      "failures_by_kind": {},
+      "finished_at": "2026-09-24T02:25:42.335354+00:00",
+      "fixed_output_length_mismatches": 0,
+      "gpu_memory_mean_mib": 20010.0,
+      "gpu_memory_peak_mib": 20010.0,
+      "gpu_power_w": {
+        "count": 7,
+        "mean": 283.1714285714286,
+        "p50": 277.2,
+        "p95": 308.78299999999996,
+        "p99": 315.71659999999997
+      },
+      "gpu_sample_count": 7,
+      "gpu_telemetry_scope": "nvidia-smi device-wide measurements on the one visible GPU; not per-process utilization.",
+      "gpu_utilization_percent": {
+        "count": 7,
+        "mean": 86.71428571428571,
+        "p50": 87.0,
+        "p95": 87.0,
+        "p99": 87.0
+      },
+      "itl_stream_s": {
+        "count": 8128,
+        "mean": 0.006053560447096569,
+        "p50": 0.005693333499948494,
+        "p95": 0.006294802164484281,
+        "p99": 0.010015390282787836
+      },
+      "latency_all_s": {
+        "count": 64,
+        "mean": 0.8868089315774341,
+        "p50": 0.8773210119979922,
+        "p95": 0.9697335000426393,
+        "p99": 0.9941481878762715
+      },
+      "latency_success_s": {
+        "count": 64,
+        "mean": 0.8868089315774341,
+        "p50": 0.8773210119979922,
+        "p95": 0.9697335000426393,
+        "p99": 0.9941481878762715
+      },
+      "prefix_cache": false,
+      "replicate": 1,
+      "requests": 64,
+      "started_at": "2026-09-24T02:25:38.774352+00:00",
+      "successful": 64,
+      "successful_requests_per_s": 17.98301736036108,
+      "tpot_s": {
+        "count": 64,
+        "mean": 0.006053560447096569,
+        "p50": 0.005884760354350387,
+        "p95": 0.007033255035914736,
+        "p99": 0.00717719614010086
+      },
+      "ttft_s": {
+        "count": 64,
+        "mean": 0.11718585285871086,
+        "p50": 0.11439873899507802,
+        "p95": 0.1978727056484786,
+        "p99": 0.20658907439355967
+      }
+    },
+    {
+      "cell": "rep1-cache-off",
+      "completion_tokens": 8192,
+      "completion_tokens_per_s": 3594.4243626124185,
+      "concurrency": 32,
+      "elapsed_s": 2.2790853760088794,
+      "failed": 0,
+      "failures_by_kind": {},
+      "finished_at": "2026-09-24T02:25:47.171545+00:00",
+      "fixed_output_length_mismatches": 0,
+      "gpu_memory_mean_mib": 20010.0,
+      "gpu_memory_peak_mib": 20010.0,
+      "gpu_power_w": {
+        "count": 4,
+        "mean": 303.14,
+        "p50": 314.86,
+        "p95": 320.718,
+        "p99": 321.39959999999996
+      },
+      "gpu_sample_count": 4,
+      "gpu_telemetry_scope": "nvidia-smi device-wide measurements on the one visible GPU; not per-process utilization.",
+      "gpu_utilization_percent": {
+        "count": 4,
+        "mean": 89.25,
+        "p50": 90.0,
+        "p95": 95.95,
+        "p99": 96.78999999999999
+      },
+      "itl_stream_s": {
+        "count": 8128,
+        "mean": 0.007270904124251552,
+        "p50": 0.006368217000272125,
+        "p95": 0.007838566658028867,
+        "p99": 0.07144447672064383
+      },
+      "latency_all_s": {
+        "count": 64,
+        "mean": 1.1284753306408675,
+        "p50": 1.131064294007956,
+        "p95": 1.204868143844942,
+        "p99": 1.207316077092255
+      },
+      "latency_success_s": {
+        "count": 64,
+        "mean": 1.1284753306408675,
+        "p50": 1.131064294007956,
+        "p95": 1.204868143844942,
+        "p99": 1.207316077092255
+      },
+      "prefix_cache": false,
+      "replicate": 1,
+      "requests": 64,
+      "started_at": "2026-09-24T02:25:44.890386+00:00",
+      "successful": 64,
+      "successful_requests_per_s": 28.08144033290952,
+      "tpot_s": {
+        "count": 64,
+        "mean": 0.007270904124251552,
+        "p50": 0.007190194078785272,
+        "p95": 0.008189815331175264,
+        "p99": 0.008747999128760902
+      },
+      "ttft_s": {
+        "count": 64,
+        "mean": 0.20394805212663414,
+        "p50": 0.2000215894950088,
+        "p95": 0.3096721428591991,
+        "p99": 0.31074294645310147
+      }
+    },
+    {
+      "cell": "rep1-cache-on",
+      "completion_tokens": 8192,
+      "completion_tokens_per_s": 202.22133969358975,
+      "concurrency": 1,
+      "elapsed_s": 40.51006690200302,
+      "failed": 0,
+      "failures_by_kind": {},
+      "finished_at": "2026-09-24T02:27:00.875310+00:00",
+      "fixed_output_length_mismatches": 0,
+      "gpu_memory_mean_mib": 19906.0,
+      "gpu_memory_peak_mib": 19906.0,
+      "gpu_power_w": {
+        "count": 81,
+        "mean": 258.65975308641976,
+        "p50": 258.58,
+        "p95": 262.07,
+        "p99": 263.5
+      },
+      "gpu_sample_count": 81,
+      "gpu_telemetry_scope": "nvidia-smi device-wide measurements on the one visible GPU; not per-process utilization.",
+      "gpu_utilization_percent": {
+        "count": 81,
+        "mean": 86.06172839506173,
+        "p50": 87.0,
+        "p95": 87.0,
+        "p99": 88.0
+      },
+      "itl_stream_s": {
+        "count": 8127,
+        "mean": 0.004852029743933511,
+        "p50": 0.0048427319852635264,
+        "p95": 0.004914682704838924,
+        "p99": 0.005098605414968914
+      },
+      "latency_all_s": {
+        "count": 64,
+        "mean": 0.6328468986253029,
+        "p50": 0.6311570649850182,
+        "p95": 0.6509374981702422,
+        "p99": 0.6522230881016003
+      },
+      "latency_success_s": {
+        "count": 64,
+        "mean": 0.6328468986253029,
+        "p50": 0.6311570649850182,
+        "p95": 0.6509374981702422,
+        "p99": 0.6522230881016003
+      },
+      "prefix_cache": true,
+      "replicate": 1,
+      "requests": 64,
+      "started_at": "2026-09-24T02:26:20.363245+00:00",
+      "successful": 64,
+      "successful_requests_per_s": 1.57985421635617,
+      "tpot_s": {
+        "count": 64,
+        "mean": 0.004851432791455172,
+        "p50": 0.004851420027502688,
+        "p95": 0.004912926217309185,
+        "p99": 0.004938961366396837
+      },
+      "ttft_s": {
+        "count": 64,
+        "mean": 0.01661802707985771,
+        "p50": 0.015376313996966928,
+        "p95": 0.03287032106454717,
+        "p99": 0.032979634736839215
+      }
+    },
+    {
+      "cell": "rep1-cache-on",
+      "completion_tokens": 8192,
+      "completion_tokens_per_s": 690.5632406355045,
+      "concurrency": 4,
+      "elapsed_s": 11.862780289986404,
+      "failed": 0,
+      "failures_by_kind": {},
+      "finished_at": "2026-09-24T02:27:15.251236+00:00",
+      "fixed_output_length_mismatches": 0,
+      "gpu_memory_mean_mib": 19906.0,
+      "gpu_memory_peak_mib": 19906.0,
+      "gpu_power_w": {
+        "count": 24,
+        "mean": 219.61125,
+        "p50": 216.615,
+        "p95": 240.92549999999997,
+        "p99": 255.89369999999997
+      },
+      "gpu_sample_count": 24,
+      "gpu_telemetry_scope": "nvidia-smi device-wide measurements on the one visible GPU; not per-process utilization.",
+      "gpu_utilization_percent": {
+        "count": 24,
+        "mean": 87.83333333333333,
+        "p50": 88.0,
+        "p95": 88.85,
+        "p99": 89.0
+      },
+      "itl_stream_s": {
+        "count": 8128,
+        "mean": 0.0056990152059577985,
+        "p50": 0.005687803000910208,
+        "p95": 0.005791171012970153,
+        "p99": 0.00606334959011292
+      },
+      "latency_all_s": {
+        "count": 64,
+        "mean": 0.7409631611867553,
+        "p50": 0.7401417345099617,
+        "p95": 0.7502097221542499,
+        "p99": 0.7528545318817487
+      },
+      "latency_success_s": {
+        "count": 64,
+        "mean": 0.7409631611867553,
+        "p50": 0.7401417345099617,
+        "p95": 0.7502097221542499,
+        "p99": 0.7528545318817487
+      },
+      "prefix_cache": true,
+      "replicate": 1,
+      "requests": 64,
+      "started_at": "2026-09-24T02:27:03.386539+00:00",
+      "successful": 64,
+      "successful_requests_per_s": 5.395025317464879,
+      "tpot_s": {
+        "count": 64,
+        "mean": 0.0056990152059577985,
+        "p50": 0.005691683948691751,
+        "p95": 0.005764068913905914,
+        "p99": 0.005797481279777579
+      },
+      "ttft_s": {
+        "count": 64,
+        "mean": 0.016943916655691282,
+        "p50": 0.016575981499045156,
+        "p95": 0.018706928043684456,
+        "p99": 0.027594670065154786
+      }
+    },
+    {
+      "cell": "rep1-cache-on",
+      "completion_tokens": 8192,
+      "completion_tokens_per_s": 2718.197077999138,
+      "concurrency": 16,
+      "elapsed_s": 3.0137623450136743,
+      "failed": 0,
+      "failures_by_kind": {},
+      "finished_at": "2026-09-24T02:27:20.782545+00:00",
+      "fixed_output_length_mismatches": 0,
+      "gpu_memory_mean_mib": 19906.0,
+      "gpu_memory_peak_mib": 19906.0,
+      "gpu_power_w": {
+        "count": 6,
+        "mean": 244.8033333333333,
+        "p50": 240.88,
+        "p95": 256.35,
+        "p99": 258.478
+      },
+      "gpu_sample_count": 6,
+      "gpu_telemetry_scope": "nvidia-smi device-wide measurements on the one visible GPU; not per-process utilization.",
+      "gpu_utilization_percent": {
+        "count": 6,
+        "mean": 86.16666666666667,
+        "p50": 86.0,
+        "p95": 86.75,
+        "p99": 86.95
+      },
+      "itl_stream_s": {
+        "count": 8128,
+        "mean": 0.005644039739047547,
+        "p50": 0.005613652494503185,
+        "p95": 0.006192645501869265,
+        "p99": 0.006982675194158215
+      },
+      "latency_all_s": {
+        "count": 64,
+        "mean": 0.7488325336748858,
+        "p50": 0.7472159789904254,
+        "p95": 0.7629571956014842,
+        "p99": 0.767596494978934
+      },
+      "latency_success_s": {
+        "count": 64,
+        "mean": 0.7488325336748858,
+        "p50": 0.7472159789904254,
+        "p95": 0.7629571956014842,
+        "p99": 0.767596494978934
+      },
+      "prefix_cache": true,
+      "replicate": 1,
+      "requests": 64,
+      "started_at": "2026-09-24T02:27:17.766582+00:00",
+      "successful": 64,
+      "successful_requests_per_s": 21.235914671868265,
+      "tpot_s": {
+        "count": 64,
+        "mean": 0.005644039739047547,
+        "p50": 0.005629252271605729,
+        "p95": 0.005719259282879763,
+        "p99": 0.005719935098238102
+      },
+      "ttft_s": {
+        "count": 64,
+        "mean": 0.031141603439664323,
+        "p50": 0.03187344600155484,
+        "p95": 0.037685243994928896,
+        "p99": 0.04138206293864641
+      }
+    },
+    {
+      "cell": "rep1-cache-on",
+      "completion_tokens": 8192,
+      "completion_tokens_per_s": 4691.562818154032,
+      "concurrency": 32,
+      "elapsed_s": 1.7461132500029635,
+      "failed": 0,
+      "failures_by_kind": {},
+      "finished_at": "2026-09-24T02:27:25.058976+00:00",
+      "fixed_output_length_mismatches": 0,
+      "gpu_memory_mean_mib": 19906.0,
+      "gpu_memory_peak_mib": 19906.0,
+      "gpu_power_w": {
+        "count": 4,
+        "mean": 256.3425,
+        "p50": 255.83999999999997,
+        "p95": 259.727,
+        "p99": 259.9934
+      },
+      "gpu_sample_count": 4,
+      "gpu_telemetry_scope": "nvidia-smi device-wide measurements on the one visible GPU; not per-process utilization.",
+      "gpu_utilization_percent": {
+        "count": 4,
+        "mean": 79.5,
+        "p50": 79.5,
+        "p95": 87.0,
+        "p99": 87.0
+      },
+      "itl_stream_s": {
+        "count": 8096,
+        "mean": 0.006339975328686302,
+        "p50": 0.006259015004616231,
+        "p95": 0.007525155735493172,
+        "p99": 0.010830944539338819
+      },
+      "latency_all_s": {
+        "count": 64,
+        "mean": 0.8567873662018428,
+        "p50": 0.8461745134845842,
+        "p95": 0.8935252008886891,
+        "p99": 0.8959863897328614
+      },
+      "latency_success_s": {
+        "count": 64,
+        "mean": 0.8567873662018428,
+        "p50": 0.8461745134845842,
+        "p95": 0.8935252008886891,
+        "p99": 0.8959863897328614
+      },
+      "prefix_cache": true,
+      "replicate": 1,
+      "requests": 64,
+      "started_at": "2026-09-24T02:27:23.310735+00:00",
+      "successful": 64,
+      "successful_requests_per_s": 36.65283451682838,
+      "tpot_s": {
+        "count": 64,
+        "mean": 0.0063150147958961995,
+        "p50": 0.006324270385863831,
+        "p95": 0.006424892725130565,
+        "p99": 0.006449544736959671
+      },
+      "ttft_s": {
+        "count": 64,
+        "mean": 0.05381070201565308,
+        "p50": 0.049334718511090614,
+        "p95": 0.08088378469692543,
+        "p99": 0.08328398327575996
+      }
+    },
+    {
+      "cell": "rep2-cache-on",
+      "completion_tokens": 8192,
+      "completion_tokens_per_s": 4160.023449367194,
+      "concurrency": 32,
+      "elapsed_s": 1.969219669001177,
+      "failed": 0,
+      "failures_by_kind": {},
+      "finished_at": "2026-09-24T02:27:59.959427+00:00",
+      "fixed_output_length_mismatches": 0,
+      "gpu_memory_mean_mib": 20086.5,
+      "gpu_memory_peak_mib": 20150.0,
+      "gpu_power_w": {
+        "count": 4,
+        "mean": 283.6475,
+        "p50": 290.17499999999995,
+        "p95": 297.15000000000003,
+        "p99": 298.014
+      },
+      "gpu_sample_count": 4,
+      "gpu_telemetry_scope": "nvidia-smi device-wide measurements on the one visible GPU; not per-process utilization.",
+      "gpu_utilization_percent": {
+        "count": 4,
+        "mean": 88.5,
+        "p50": 89.0,
+        "p95": 91.0,
+        "p99": 91.0
+      },
+      "itl_stream_s": {
+        "count": 8128,
+        "mean": 0.006569716443409991,
+        "p50": 0.006259150512050837,
+        "p95": 0.007424741295108106,
+        "p99": 0.009404127751768014
+      },
+      "latency_all_s": {
+        "count": 64,
+        "mean": 0.9734985582972513,
+        "p50": 0.9716607530135661,
+        "p95": 1.0061485838115913,
+        "p99": 1.0076196935481858
+      },
+      "latency_success_s": {
+        "count": 64,
+        "mean": 0.9734985582972513,
+        "p50": 0.9716607530135661,
+        "p95": 1.0061485838115913,
+        "p99": 1.0076196935481858
+      },
+      "prefix_cache": true,
+      "replicate": 2,
+      "requests": 64,
+      "started_at": "2026-09-24T02:27:57.988109+00:00",
+      "successful": 64,
+      "successful_requests_per_s": 32.500183198181205,
+      "tpot_s": {
+        "count": 64,
+        "mean": 0.006569716443409991,
+        "p50": 0.0063429666969762,
+        "p95": 0.007384628227920597,
+        "p99": 0.007439216081764343
+      },
+      "ttft_s": {
+        "count": 64,
+        "mean": 0.13754530787537078,
+        "p50": 0.14738825349195395,
+        "p95": 0.19715348870959132,
+        "p99": 0.19847363217646488
+      }
+    },
+    {
+      "cell": "rep2-cache-on",
+      "completion_tokens": 8192,
+      "completion_tokens_per_s": 2715.51037769309,
+      "concurrency": 16,
+      "elapsed_s": 3.016744132997701,
+      "failed": 0,
+      "failures_by_kind": {},
+      "finished_at": "2026-09-24T02:28:05.485900+00:00",
+      "fixed_output_length_mismatches": 0,
+      "gpu_memory_mean_mib": 20150.0,
+      "gpu_memory_peak_mib": 20150.0,
+      "gpu_power_w": {
+        "count": 6,
+        "mean": 243.78666666666666,
+        "p50": 240.365,
+        "p95": 254.2175,
+        "p99": 255.2595
+      },
+      "gpu_sample_count": 6,
+      "gpu_telemetry_scope": "nvidia-smi device-wide measurements on the one visible GPU; not per-process utilization.",
+      "gpu_utilization_percent": {
+        "count": 6,
+        "mean": 85.0,
+        "p50": 85.0,
+        "p95": 86.0,
+        "p99": 86.0
+      },
+      "itl_stream_s": {
+        "count": 8128,
+        "mean": 0.005665165045265322,
+        "p50": 0.005639116003294475,
+        "p95": 0.006218447646824643,
+        "p99": 0.007183675418491471
+      },
+      "latency_all_s": {
+        "count": 64,
+        "mean": 0.7486503076397639,
+        "p50": 0.7478584559867159,
+        "p95": 0.7606528342366801,
+        "p99": 0.7626014733852935
+      },
+      "latency_success_s": {
+        "count": 64,
+        "mean": 0.7486503076397639,
+        "p50": 0.7478584559867159,
+        "p95": 0.7606528342366801,
+        "p99": 0.7626014733852935
+      },
+      "prefix_cache": true,
+      "replicate": 2,
+      "requests": 64,
+      "started_at": "2026-09-24T02:28:02.467089+00:00",
+      "successful": 64,
+      "successful_requests_per_s": 21.214924825727266,
+      "tpot_s": {
+        "count": 64,
+        "mean": 0.005665165045265322,
+        "p50": 0.005658368370129074,
+        "p95": 0.005695463532804673,
+        "p99": 0.005702733341787803
+      },
+      "ttft_s": {
+        "count": 64,
+        "mean": 0.028321581049112865,
+        "p50": 0.028217961997142993,
+        "p95": 0.03967997675790684,
+        "p99": 0.0415754130113055
+      }
+    },
+    {
+      "cell": "rep2-cache-on",
+      "completion_tokens": 8192,
+      "completion_tokens_per_s": 685.353123493432,
+      "concurrency": 4,
+      "elapsed_s": 11.9529622309783,
+      "failed": 0,
+      "failures_by_kind": {},
+      "finished_at": "2026-09-24T02:28:19.960888+00:00",
+      "fixed_output_length_mismatches": 0,
+      "gpu_memory_mean_mib": 20150.0,
+      "gpu_memory_peak_mib": 20150.0,
+      "gpu_power_w": {
+        "count": 24,
+        "mean": 219.25541666666666,
+        "p50": 215.76,
+        "p95": 244.31949999999995,
+        "p99": 253.4972
+      },
+      "gpu_sample_count": 24,
+      "gpu_telemetry_scope": "nvidia-smi device-wide measurements on the one visible GPU; not per-process utilization.",
+      "gpu_utilization_percent": {
+        "count": 24,
+        "mean": 87.45833333333333,
+        "p50": 87.5,
+        "p95": 88.0,
+        "p99": 88.0
+      },
+      "itl_stream_s": {
+        "count": 8128,
+        "mean": 0.005715017081424382,
+        "p50": 0.005710265482775867,
+        "p95": 0.005819329500081949,
+        "p99": 0.006088196098280603
+      },
+      "latency_all_s": {
+        "count": 64,
+        "mean": 0.7453627752979628,
+        "p50": 0.7467131820012582,
+        "p95": 0.7498122171658906,
+        "p99": 0.7516937233507633
+      },
+      "latency_success_s": {
+        "count": 64,
+        "mean": 0.7453627752979628,
+        "p50": 0.7467131820012582,
+        "p95": 0.7498122171658906,
+        "p99": 0.7516937233507633
+      },
+      "prefix_cache": true,
+      "replicate": 2,
+      "requests": 64,
+      "started_at": "2026-09-24T02:28:08.005958+00:00",
+      "successful": 64,
+      "successful_requests_per_s": 5.354321277292438,
+      "tpot_s": {
+        "count": 64,
+        "mean": 0.005715017081424382,
+        "p50": 0.005715851889699551,
+        "p95": 0.005734918718686873,
+        "p99": 0.0057362259766907345
+      },
+      "ttft_s": {
+        "count": 64,
+        "mean": 0.019193591750536143,
+        "p50": 0.02003075898392126,
+        "p95": 0.021435013302834705,
+        "p99": 0.022535240213619544
+      }
+    },
+    {
+      "cell": "rep2-cache-on",
+      "completion_tokens": 8192,
+      "completion_tokens_per_s": 203.3000621894143,
+      "concurrency": 1,
+      "elapsed_s": 40.29511802297202,
+      "failed": 0,
+      "failures_by_kind": {},
+      "finished_at": "2026-09-24T02:29:02.773216+00:00",
+      "fixed_output_length_mismatches": 0,
+      "gpu_memory_mean_mib": 20150.0,
+      "gpu_memory_peak_mib": 20150.0,
+      "gpu_power_w": {
+        "count": 81,
+        "mean": 256.5635802469136,
+        "p50": 256.65,
+        "p95": 258.69,
+        "p99": 258.898
+      },
+      "gpu_sample_count": 81,
+      "gpu_telemetry_scope": "nvidia-smi device-wide measurements on the one visible GPU; not per-process utilization.",
+      "gpu_utilization_percent": {
+        "count": 81,
+        "mean": 85.8641975308642,
+        "p50": 87.0,
+        "p95": 87.0,
+        "p99": 88.0
+      },
+      "itl_stream_s": {
+        "count": 8126,
+        "mean": 0.004855343780211765,
+        "p50": 0.004845682982704602,
+        "p95": 0.004913737007882446,
+        "p99": 0.005071405750641134
+      },
+      "latency_all_s": {
+        "count": 64,
+        "mean": 0.6294927997209925,
+        "p50": 0.6288918550126255,
+        "p95": 0.6377178928494687,
+        "p99": 0.6408996409800602
+      },
+      "latency_success_s": {
+        "count": 64,
+        "mean": 0.6294927997209925,
+        "p50": 0.6288918550126255,
+        "p95": 0.6377178928494687,
+        "p99": 0.6408996409800602
+      },
+      "prefix_cache": true,
+      "replicate": 2,
+      "requests": 64,
+      "started_at": "2026-09-24T02:28:22.476124+00:00",
+      "successful": 64,
+      "successful_requests_per_s": 1.5882817358547991,
+      "tpot_s": {
+        "count": 64,
+        "mean": 0.004854149059793406,
+        "p50": 0.004850074330777459,
+        "p95": 0.004916139466135293,
+        "p99": 0.004927283154425163
+      },
+      "ttft_s": {
+        "count": 64,
+        "mean": 0.012909897485315014,
+        "p50": 0.012930671495269053,
+        "p95": 0.015370037154934835,
+        "p99": 0.015739542391966097
+      }
+    },
+    {
+      "cell": "rep2-cache-off",
+      "completion_tokens": 8192,
+      "completion_tokens_per_s": 3613.9915017487206,
+      "concurrency": 32,
+      "elapsed_s": 2.266745783999795,
+      "failed": 0,
+      "failures_by_kind": {},
+      "finished_at": "2026-09-24T02:29:37.924385+00:00",
+      "fixed_output_length_mismatches": 0,
+      "gpu_memory_mean_mib": 20118.0,
+      "gpu_memory_peak_mib": 20146.0,
+      "gpu_power_w": {
+        "count": 5,
+        "mean": 299.882,
+        "p50": 318.23,
+        "p95": 322.416,
+        "p99": 323.1712
+      },
+      "gpu_sample_count": 5,
+      "gpu_telemetry_scope": "nvidia-smi device-wide measurements on the one visible GPU; not per-process utilization.",
+      "gpu_utilization_percent": {
+        "count": 5,
+        "mean": 86.4,
+        "p50": 86.0,
+        "p95": 87.0,
+        "p99": 87.0
+      },
+      "itl_stream_s": {
+        "count": 8128,
+        "mean": 0.0072693714344273675,
+        "p50": 0.0063395375036634505,
+        "p95": 0.007660294948436785,
+        "p99": 0.06908785834034026
+      },
+      "latency_all_s": {
+        "count": 64,
+        "mean": 1.1216935979232403,
+        "p50": 1.1204025104962057,
+        "p95": 1.1409624085688848,
+        "p99": 1.1426256724560517
+      },
+      "latency_success_s": {
+        "count": 64,
+        "mean": 1.1216935979232403,
+        "p50": 1.1204025104962057,
+        "p95": 1.1409624085688848,
+        "p99": 1.1426256724560517
+      },
+      "prefix_cache": false,
+      "replicate": 2,
+      "requests": 64,
+      "started_at": "2026-09-24T02:29:35.655509+00:00",
+      "successful": 64,
+      "successful_requests_per_s": 28.23430860741188,
+      "tpot_s": {
+        "count": 64,
+        "mean": 0.0072693714344273675,
+        "p50": 0.007139975854285487,
+        "p95": 0.008243200786257763,
+        "p99": 0.00846333759222922
+      },
+      "ttft_s": {
+        "count": 64,
+        "mean": 0.19737571618907168,
+        "p50": 0.2159083055012161,
+        "p95": 0.30450875714595893,
+        "p99": 0.32739390634786103
+      }
+    },
+    {
+      "cell": "rep2-cache-off",
+      "completion_tokens": 8192,
+      "completion_tokens_per_s": 2308.4366735936246,
+      "concurrency": 16,
+      "elapsed_s": 3.5487219960195944,
+      "failed": 0,
+      "failures_by_kind": {},
+      "finished_at": "2026-09-24T02:29:43.987190+00:00",
+      "fixed_output_length_mismatches": 0,
+      "gpu_memory_mean_mib": 20146.0,
+      "gpu_memory_peak_mib": 20146.0,
+      "gpu_power_w": {
+        "count": 7,
+        "mean": 278.3757142857143,
+        "p50": 277.27,
+        "p95": 295.382,
+        "p99": 295.9004
+      },
+      "gpu_sample_count": 7,
+      "gpu_telemetry_scope": "nvidia-smi device-wide measurements on the one visible GPU; not per-process utilization.",
+      "gpu_utilization_percent": {
+        "count": 7,
+        "mean": 87.85714285714286,
+        "p50": 87.0,
+        "p95": 92.7,
+        "p99": 92.94
+      },
+      "itl_stream_s": {
+        "count": 8128,
+        "mean": 0.006030575107748217,
+        "p50": 0.005667644494678825,
+        "p95": 0.0062550584945711305,
+        "p99": 0.008894240893423506
+      },
+      "latency_all_s": {
+        "count": 64,
+        "mean": 0.8840039498882106,
+        "p50": 0.875547061994439,
+        "p95": 0.9313540477363859,
+        "p99": 0.9343733336924924
+      },
+      "latency_success_s": {
+        "count": 64,
+        "mean": 0.8840039498882106,
+        "p50": 0.875547061994439,
+        "p95": 0.9313540477363859,
+        "p99": 0.9343733336924924
+      },
+      "prefix_cache": false,
+      "replicate": 2,
+      "requests": 64,
+      "started_at": "2026-09-24T02:29:40.436342+00:00",
+      "successful": 64,
+      "successful_requests_per_s": 18.034661512450192,
+      "tpot_s": {
+        "count": 64,
+        "mean": 0.006030575107748217,
+        "p50": 0.005849067555093316,
+        "p95": 0.006576047132195498,
+        "p99": 0.006855046480204763
+      },
+      "ttft_s": {
+        "count": 64,
+        "mean": 0.11726822807622739,
+        "p50": 0.11442657149746083,
+        "p95": 0.188613688434998,
+        "p99": 0.20122410547541222
+      }
+    },
+    {
+      "cell": "rep2-cache-off",
+      "completion_tokens": 8192,
+      "completion_tokens_per_s": 662.4716148729462,
+      "concurrency": 4,
+      "elapsed_s": 12.365812837990234,
+      "failed": 0,
+      "failures_by_kind": {},
+      "finished_at": "2026-09-24T02:29:58.868906+00:00",
+      "fixed_output_length_mismatches": 0,
+      "gpu_memory_mean_mib": 20146.0,
+      "gpu_memory_peak_mib": 20146.0,
+      "gpu_power_w": {
+        "count": 25,
+        "mean": 232.63240000000002,
+        "p50": 229.76,
+        "p95": 251.35399999999996,
+        "p99": 257.7848
+      },
+      "gpu_sample_count": 25,
+      "gpu_telemetry_scope": "nvidia-smi device-wide measurements on the one visible GPU; not per-process utilization.",
+      "gpu_utilization_percent": {
+        "count": 25,
+        "mean": 87.88,
+        "p50": 88.0,
+        "p95": 89.0,
+        "p99": 89.0
+      },
+      "itl_stream_s": {
+        "count": 8128,
+        "mean": 0.005760851333899892,
+        "p50": 0.005698978988220915,
+        "p95": 0.005790053505916148,
+        "p99": 0.005982711696706244
+      },
+      "latency_all_s": {
+        "count": 64,
+        "mean": 0.7725226075781393,
+        "p50": 0.7753223695035558,
+        "p95": 0.7910050807884546,
+        "p99": 0.791905156771245
+      },
+      "latency_success_s": {
+        "count": 64,
+        "mean": 0.7725226075781393,
+        "p50": 0.7753223695035558,
+        "p95": 0.7910050807884546,
+        "p99": 0.791905156771245
+      },
+      "prefix_cache": false,
+      "replicate": 2,
+      "requests": 64,
+      "started_at": "2026-09-24T02:29:46.501820+00:00",
+      "successful": 64,
+      "successful_requests_per_s": 5.175559491194893,
+      "tpot_s": {
+        "count": 64,
+        "mean": 0.005760851333899892,
+        "p50": 0.005712268602489824,
+        "p95": 0.005971763290542336,
+        "p99": 0.006013943730980913
+      },
+      "ttft_s": {
+        "count": 64,
+        "mean": 0.04058796110939511,
+        "p50": 0.04033685599279124,
+        "p95": 0.06375542923778994,
+        "p99": 0.06466375454532682
+      }
+    },
+    {
+      "cell": "rep2-cache-off",
+      "completion_tokens": 8192,
+      "completion_tokens_per_s": 201.13233957402204,
+      "concurrency": 1,
+      "elapsed_s": 40.72940242901677,
+      "failed": 0,
+      "failures_by_kind": {},
+      "finished_at": "2026-09-24T02:30:42.113411+00:00",
+      "fixed_output_length_mismatches": 0,
+      "gpu_memory_mean_mib": 20155.654320987655,
+      "gpu_memory_peak_mib": 20537.0,
+      "gpu_power_w": {
+        "count": 81,
+        "mean": 261.8101234567901,
+        "p50": 261.59,
+        "p95": 265.83,
+        "p99": 266.334
+      },
+      "gpu_sample_count": 81,
+      "gpu_telemetry_scope": "nvidia-smi device-wide measurements on the one visible GPU; not per-process utilization.",
+      "gpu_utilization_percent": {
+        "count": 81,
+        "mean": 85.69135802469135,
+        "p50": 87.0,
+        "p95": 88.0,
+        "p99": 88.0
+      },
+      "itl_stream_s": {
+        "count": 8126,
+        "mean": 0.0048450430673111,
+        "p50": 0.004836680993321352,
+        "p95": 0.004888459014182445,
+        "p99": 0.005087726502097212
+      },
+      "latency_all_s": {
+        "count": 64,
+        "mean": 0.6362728819362928,
+        "p50": 0.633355293495697,
+        "p95": 0.650622320146067,
+        "p99": 0.651565937960404
+      },
+      "latency_success_s": {
+        "count": 64,
+        "mean": 0.6362728819362928,
+        "p50": 0.633355293495697,
+        "p95": 0.650622320146067,
+        "p99": 0.651565937960404
+      },
+      "prefix_cache": false,
+      "replicate": 2,
+      "requests": 64,
+      "started_at": "2026-09-24T02:30:01.382121+00:00",
+      "successful": 64,
+      "successful_requests_per_s": 1.5713464029220472,
+      "tpot_s": {
+        "count": 64,
+        "mean": 0.004843850881516978,
+        "p50": 0.004840877031546276,
+        "p95": 0.004880547659851127,
+        "p99": 0.004906307871872376
+      },
+      "ttft_s": {
+        "count": 64,
+        "mean": 0.020986505109249265,
+        "p50": 0.018582256496301852,
+        "p95": 0.03254579133063089,
+        "p99": 0.032823310990352184
+      }
+    },
+    {
+      "cell": "rep3-cache-off",
+      "completion_tokens": 8192,
+      "completion_tokens_per_s": 660.8424232323193,
+      "concurrency": 4,
+      "elapsed_s": 12.396298591018422,
+      "failed": 0,
+      "failures_by_kind": {},
+      "finished_at": "2026-09-24T02:31:27.747222+00:00",
+      "fixed_output_length_mismatches": 0,
+      "gpu_memory_mean_mib": 20035.44,
+      "gpu_memory_peak_mib": 20110.0,
+      "gpu_power_w": {
+        "count": 25,
+        "mean": 232.3172,
+        "p50": 230.38,
+        "p95": 252.21599999999998,
+        "p99": 258.6484
+      },
+      "gpu_sample_count": 25,
+      "gpu_telemetry_scope": "nvidia-smi device-wide measurements on the one visible GPU; not per-process utilization.",
+      "gpu_utilization_percent": {
+        "count": 25,
+        "mean": 89.12,
+        "p50": 89.0,
+        "p95": 93.6,
+        "p99": 94.0
+      },
+      "itl_stream_s": {
+        "count": 8128,
+        "mean": 0.005771808071868712,
+        "p50": 0.005705946998205036,
+        "p95": 0.005812403003801592,
+        "p99": 0.006147653833904769
+      },
+      "latency_all_s": {
+        "count": 64,
+        "mean": 0.77441506992227,
+        "p50": 0.7698813140013954,
+        "p95": 0.7955318515625549,
+        "p99": 0.799734449913958
+      },
+      "latency_success_s": {
+        "count": 64,
+        "mean": 0.77441506992227,
+        "p50": 0.7698813140013954,
+        "p95": 0.7955318515625549,
+        "p99": 0.799734449913958
+      },
+      "prefix_cache": false,
+      "replicate": 3,
+      "requests": 64,
+      "started_at": "2026-09-24T02:31:15.349068+00:00",
+      "successful": 64,
+      "successful_requests_per_s": 5.162831431502495,
+      "tpot_s": {
+        "count": 64,
+        "mean": 0.005771808071868712,
+        "p50": 0.0057239790945946365,
+        "p95": 0.0060120284033817325,
+        "p99": 0.006050055441325145
+      },
+      "ttft_s": {
+        "count": 64,
+        "mean": 0.04110633621803572,
+        "p50": 0.042307829004130326,
+        "p95": 0.0663450433552498,
+        "p99": 0.06799729135906091
+      }
+    },
+    {
+      "cell": "rep3-cache-off",
+      "completion_tokens": 8192,
+      "completion_tokens_per_s": 3613.7148884304747,
+      "concurrency": 32,
+      "elapsed_s": 2.266919293004321,
+      "failed": 0,
+      "failures_by_kind": {},
+      "finished_at": "2026-09-24T02:31:32.577610+00:00",
+      "fixed_output_length_mismatches": 0,
+      "gpu_memory_mean_mib": 20356.0,
+      "gpu_memory_peak_mib": 20356.0,
+      "gpu_power_w": {
+        "count": 5,
+        "mean": 308.856,
+        "p50": 319.97,
+        "p95": 322.974,
+        "p99": 323.1788
+      },
+      "gpu_sample_count": 5,
+      "gpu_telemetry_scope": "nvidia-smi device-wide measurements on the one visible GPU; not per-process utilization.",
+      "gpu_utilization_percent": {
+        "count": 5,
+        "mean": 85.8,
+        "p50": 86.0,
+        "p95": 86.0,
+        "p99": 86.0
+      },
+      "itl_stream_s": {
+        "count": 8127,
+        "mean": 0.007267701088949084,
+        "p50": 0.006358232989441603,
+        "p95": 0.007673598791006952,
+        "p99": 0.07781395613739732
+      },
+      "latency_all_s": {
+        "count": 64,
+        "mean": 1.1223038775769965,
+        "p50": 1.1146195020119194,
+        "p95": 1.1749266849874402,
+        "p99": 1.2036605832687928
+      },
+      "latency_success_s": {
+        "count": 64,
+        "mean": 1.1223038775769965,
+        "p50": 1.1146195020119194,
+        "p95": 1.1749266849874402,
+        "p99": 1.2036605832687928
+      },
+      "prefix_cache": false,
+      "replicate": 3,
+      "requests": 64,
+      "started_at": "2026-09-24T02:31:30.308550+00:00",
+      "successful": 64,
+      "successful_requests_per_s": 28.232147565863084,
+      "tpot_s": {
+        "count": 64,
+        "mean": 0.007266806932811173,
+        "p50": 0.007165675279528534,
+        "p95": 0.008260698638263793,
+        "p99": 0.008430729776205619
+      },
+      "ttft_s": {
+        "count": 64,
+        "mean": 0.19835108445431615,
+        "p50": 0.1974320150038693,
+        "p95": 0.33220501269679514,
+        "p99": 0.3508474426585599
+      }
+    },
+    {
+      "cell": "rep3-cache-off",
+      "completion_tokens": 8192,
+      "completion_tokens_per_s": 201.4915593709924,
+      "concurrency": 1,
+      "elapsed_s": 40.656789920001756,
+      "failed": 0,
+      "failures_by_kind": {},
+      "finished_at": "2026-09-24T02:32:15.788548+00:00",
+      "fixed_output_length_mismatches": 0,
+      "gpu_memory_mean_mib": 20356.0,
+      "gpu_memory_peak_mib": 20356.0,
+      "gpu_power_w": {
+        "count": 81,
+        "mean": 262.50271604938274,
+        "p50": 262.68,
+        "p95": 265.07,
+        "p99": 266.45399999999995
+      },
+      "gpu_sample_count": 81,
+      "gpu_telemetry_scope": "nvidia-smi device-wide measurements on the one visible GPU; not per-process utilization.",
+      "gpu_utilization_percent": {
+        "count": 81,
+        "mean": 85.96296296296296,
+        "p50": 87.0,
+        "p95": 87.0,
+        "p99": 88.0
+      },
+      "itl_stream_s": {
+        "count": 8128,
+        "mean": 0.004836045906885138,
+        "p50": 0.004830003512324765,
+        "p95": 0.004894735843117814,
+        "p99": 0.005044377809099387
+      },
+      "latency_all_s": {
+        "count": 64,
+        "mean": 0.6351482852041954,
+        "p50": 0.6331013230083045,
+        "p95": 0.6506000480425428,
+        "p99": 0.6519482991937547
+      },
+      "latency_success_s": {
+        "count": 64,
+        "mean": 0.6351482852041954,
+        "p50": 0.6331013230083045,
+        "p95": 0.6506000480425428,
+        "p99": 0.6519482991937547
+      },
+      "prefix_cache": false,
+      "replicate": 3,
+      "requests": 64,
+      "started_at": "2026-09-24T02:31:35.129859+00:00",
+      "successful": 64,
+      "successful_requests_per_s": 1.5741528075858782,
+      "tpot_s": {
+        "count": 64,
+        "mean": 0.004836045906885138,
+        "p50": 0.004834995661540448,
+        "p95": 0.0048717302205265635,
+        "p99": 0.004882066980374181
+      },
+      "ttft_s": {
+        "count": 64,
+        "mean": 0.02087105615555629,
+        "p50": 0.018190126502304338,
+        "p95": 0.03248485633812379,
+        "p99": 0.0331671299910522
+      }
+    },
+    {
+      "cell": "rep3-cache-off",
+      "completion_tokens": 8192,
+      "completion_tokens_per_s": 2292.57131406555,
+      "concurrency": 16,
+      "elapsed_s": 3.5732803379942197,
+      "failed": 0,
+      "failures_by_kind": {},
+      "finished_at": "2026-09-24T02:32:21.937784+00:00",
+      "fixed_output_length_mismatches": 0,
+      "gpu_memory_mean_mib": 20356.0,
+      "gpu_memory_peak_mib": 20356.0,
+      "gpu_power_w": {
+        "count": 7,
+        "mean": 281.3671428571428,
+        "p50": 285.86,
+        "p95": 299.161,
+        "p99": 300.3202
+      },
+      "gpu_sample_count": 7,
+      "gpu_telemetry_scope": "nvidia-smi device-wide measurements on the one visible GPU; not per-process utilization.",
+      "gpu_utilization_percent": {
+        "count": 7,
+        "mean": 89.42857142857143,
+        "p50": 87.0,
+        "p95": 94.0,
+        "p99": 94.0
+      },
+      "itl_stream_s": {
+        "count": 8112,
+        "mean": 0.006091558089740648,
+        "p50": 0.0057166569895343855,
+        "p95": 0.006348194461315871,
+        "p99": 0.01538452039967667
+      },
+      "latency_all_s": {
+        "count": 64,
+        "mean": 0.8906985344406166,
+        "p50": 0.88387726151268,
+        "p95": 0.9329824695625575,
+        "p99": 0.9346845110572758
+      },
+      "latency_success_s": {
+        "count": 64,
+        "mean": 0.8906985344406166,
+        "p50": 0.88387726151268,
+        "p95": 0.9329824695625575,
+        "p99": 0.9346845110572758
+      },
+      "prefix_cache": false,
+      "replicate": 3,
+      "requests": 64,
+      "started_at": "2026-09-24T02:32:18.362473+00:00",
+      "successful": 64,
+      "successful_requests_per_s": 17.910713391137108,
+      "tpot_s": {
+        "count": 64,
+        "mean": 0.0060795668336584814,
+        "p50": 0.006037541787281236,
+        "p95": 0.006602733012865843,
+        "p99": 0.006835564623869163
+      },
+      "ttft_s": {
+        "count": 64,
+        "mean": 0.11782357603169658,
+        "p50": 0.11219694050669204,
+        "p95": 0.1892685852566501,
+        "p99": 0.19587407265033102
+      }
+    },
+    {
+      "cell": "rep3-cache-on",
+      "completion_tokens": 8192,
+      "completion_tokens_per_s": 672.7541387169556,
+      "concurrency": 4,
+      "elapsed_s": 12.176811005017953,
+      "failed": 0,
+      "failures_by_kind": {},
+      "finished_at": "2026-09-24T02:33:07.184833+00:00",
+      "fixed_output_length_mismatches": 0,
+      "gpu_memory_mean_mib": 20008.8,
+      "gpu_memory_peak_mib": 20024.0,
+      "gpu_power_w": {
+        "count": 25,
+        "mean": 224.808,
+        "p50": 221.99,
+        "p95": 246.46799999999993,
+        "p99": 257.0252
+      },
+      "gpu_sample_count": 25,
+      "gpu_telemetry_scope": "nvidia-smi device-wide measurements on the one visible GPU; not per-process utilization.",
+      "gpu_utilization_percent": {
+        "count": 25,
+        "mean": 87.96,
+        "p50": 88.0,
+        "p95": 88.8,
+        "p99": 89.0
+      },
+      "itl_stream_s": {
+        "count": 8128,
+        "mean": 0.005751862542183517,
+        "p50": 0.005710454497602768,
+        "p95": 0.005831956658221315,
+        "p99": 0.0062756782377255075
+      },
+      "latency_all_s": {
+        "count": 64,
+        "mean": 0.7596909695930663,
+        "p50": 0.7572969104949152,
+        "p95": 0.7874261514429236,
+        "p99": 0.7913390928151784
+      },
+      "latency_success_s": {
+        "count": 64,
+        "mean": 0.7596909695930663,
+        "p50": 0.7572969104949152,
+        "p95": 0.7874261514429236,
+        "p99": 0.7913390928151784
+      },
+      "prefix_cache": true,
+      "replicate": 3,
+      "requests": 64,
+      "started_at": "2026-09-24T02:32:55.006132+00:00",
+      "successful": 64,
+      "successful_requests_per_s": 5.255891708726216,
+      "tpot_s": {
+        "count": 64,
+        "mean": 0.005751862542183517,
+        "p50": 0.005731186870069382,
+        "p95": 0.0058841163616908864,
+        "p99": 0.005950365985838117
+      },
+      "ttft_s": {
+        "count": 64,
+        "mean": 0.028858121250323165,
+        "p50": 0.02519830150413327,
+        "p95": 0.043838808459986466,
+        "p99": 0.05784516780084232
+      }
+    },
+    {
+      "cell": "rep3-cache-on",
+      "completion_tokens": 8192,
+      "completion_tokens_per_s": 4712.008293938689,
+      "concurrency": 32,
+      "elapsed_s": 1.7385368380055297,
+      "failed": 0,
+      "failures_by_kind": {},
+      "finished_at": "2026-09-24T02:33:11.439662+00:00",
+      "fixed_output_length_mismatches": 0,
+      "gpu_memory_mean_mib": 20024.0,
+      "gpu_memory_peak_mib": 20024.0,
+      "gpu_power_w": {
+        "count": 3,
+        "mean": 254.63333333333333,
+        "p50": 255.12,
+        "p95": 255.24599999999998,
+        "p99": 255.25719999999998
+      },
+      "gpu_sample_count": 3,
+      "gpu_telemetry_scope": "nvidia-smi device-wide measurements on the one visible GPU; not per-process utilization.",
+      "gpu_utilization_percent": {
+        "count": 3,
+        "mean": 85.0,
+        "p50": 84.0,
+        "p95": 86.7,
+        "p99": 86.94
+      },
+      "itl_stream_s": {
+        "count": 8125,
+        "mean": 0.006270811225090605,
+        "p50": 0.006226942990906537,
+        "p95": 0.007553847593953832,
+        "p99": 0.008526146654039632
+      },
+      "latency_all_s": {
+        "count": 64,
+        "mean": 0.856909759984319,
+        "p50": 0.8538333674950991,
+        "p95": 0.8783445686509367,
+        "p99": 0.8817703224491561
+      },
+      "latency_success_s": {
+        "count": 64,
+        "mean": 0.856909759984319,
+        "p50": 0.8538333674950991,
+        "p95": 0.8783445686509367,
+        "p99": 0.8817703224491561
+      },
+      "prefix_cache": true,
+      "replicate": 3,
+      "requests": 64,
+      "started_at": "2026-09-24T02:33:09.698937+00:00",
+      "successful": 64,
+      "successful_requests_per_s": 36.81256479639601,
+      "tpot_s": {
+        "count": 64,
+        "mean": 0.006268496703230951,
+        "p50": 0.0062600726377004465,
+        "p95": 0.0063572720220604895,
+        "p99": 0.006373089237968661
+      },
+      "ttft_s": {
+        "count": 64,
+        "mean": 0.05884744257764396,
+        "p50": 0.061737387513858266,
+        "p95": 0.07162164590263273,
+        "p99": 0.07259912885376252
+      }
+    },
+    {
+      "cell": "rep3-cache-on",
+      "completion_tokens": 8192,
+      "completion_tokens_per_s": 203.98282982152918,
+      "concurrency": 1,
+      "elapsed_s": 40.160242934012786,
+      "failed": 0,
+      "failures_by_kind": {},
+      "finished_at": "2026-09-24T02:33:54.112515+00:00",
+      "fixed_output_length_mismatches": 0,
+      "gpu_memory_mean_mib": 20024.0,
+      "gpu_memory_peak_mib": 20024.0,
+      "gpu_power_w": {
+        "count": 81,
+        "mean": 257.5527160493827,
+        "p50": 257.79,
+        "p95": 259.68,
+        "p99": 260.08
+      },
+      "gpu_sample_count": 81,
+      "gpu_telemetry_scope": "nvidia-smi device-wide measurements on the one visible GPU; not per-process utilization.",
+      "gpu_utilization_percent": {
+        "count": 81,
+        "mean": 85.74074074074075,
+        "p50": 87.0,
+        "p95": 87.0,
+        "p99": 88.0
+      },
+      "itl_stream_s": {
+        "count": 8128,
+        "mean": 0.0048400336095004975,
+        "p50": 0.004830974488868378,
+        "p95": 0.004907761845970526,
+        "p99": 0.0050596952630439776
+      },
+      "latency_all_s": {
+        "count": 64,
+        "mean": 0.6273934192035995,
+        "p50": 0.6261522455024533,
+        "p95": 0.6372507865453372,
+        "p99": 0.6387034209762351
+      },
+      "latency_success_s": {
+        "count": 64,
+        "mean": 0.6273934192035995,
+        "p50": 0.6261522455024533,
+        "p95": 0.6372507865453372,
+        "p99": 0.6387034209762351
+      },
+      "prefix_cache": true,
+      "replicate": 3,
+      "requests": 64,
+      "started_at": "2026-09-24T02:33:13.950386+00:00",
+      "successful": 64,
+      "successful_requests_per_s": 1.5936158579806967,
+      "tpot_s": {
+        "count": 64,
+        "mean": 0.0048400336095004975,
+        "p50": 0.004833004736216871,
+        "p95": 0.004901297168137494,
+        "p99": 0.004918782244070697
+      },
+      "ttft_s": {
+        "count": 64,
+        "mean": 0.012616043312391412,
+        "p50": 0.012231595508637838,
+        "p95": 0.01505588599393377,
+        "p99": 0.01604419492097804
+      }
+    },
+    {
+      "cell": "rep3-cache-on",
+      "completion_tokens": 8192,
+      "completion_tokens_per_s": 2732.7471899905718,
+      "concurrency": 16,
+      "elapsed_s": 2.9977160090056714,
+      "failed": 0,
+      "failures_by_kind": {},
+      "finished_at": "2026-09-24T02:33:59.623776+00:00",
+      "fixed_output_length_mismatches": 0,
+      "gpu_memory_mean_mib": 20024.0,
+      "gpu_memory_peak_mib": 20024.0,
+      "gpu_power_w": {
+        "count": 6,
+        "mean": 243.17499999999998,
+        "p50": 240.28500000000003,
+        "p95": 250.865,
+        "p99": 252.26100000000002
+      },
+      "gpu_sample_count": 6,
+      "gpu_telemetry_scope": "nvidia-smi device-wide measurements on the one visible GPU; not per-process utilization.",
+      "gpu_utilization_percent": {
+        "count": 6,
+        "mean": 85.83333333333333,
+        "p50": 86.0,
+        "p95": 86.75,
+        "p99": 86.95
+      },
+      "itl_stream_s": {
+        "count": 8128,
+        "mean": 0.005641995785434864,
+        "p50": 0.005607229002634995,
+        "p95": 0.006207206660474185,
+        "p99": 0.007066464503586755
+      },
+      "latency_all_s": {
+        "count": 64,
+        "mean": 0.7441127432971371,
+        "p50": 0.7398590755037731,
+        "p95": 0.7644070473936153,
+        "p99": 0.7653812203128473
+      },
+      "latency_success_s": {
+        "count": 64,
+        "mean": 0.7441127432971371,
+        "p50": 0.7398590755037731,
+        "p95": 0.7644070473936153,
+        "p99": 0.7653812203128473
+      },
+      "prefix_cache": true,
+      "replicate": 3,
+      "requests": 64,
+      "started_at": "2026-09-24T02:33:56.623897+00:00",
+      "successful": 64,
+      "successful_requests_per_s": 21.349587421801342,
+      "tpot_s": {
+        "count": 64,
+        "mean": 0.005641995785434864,
+        "p50": 0.005626008543369221,
+        "p95": 0.005730087419742201,
+        "p99": 0.00575277276696476
+      },
+      "ttft_s": {
+        "count": 64,
+        "mean": 0.02686257074947207,
+        "p50": 0.026003126506111585,
+        "p95": 0.03628746093454538,
+        "p99": 0.03847946011519525
+      }
+    }
+  ]
+}
