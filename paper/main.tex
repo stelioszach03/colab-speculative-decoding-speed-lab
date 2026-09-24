@@ -31,19 +31,19 @@ Speculative decoding is widely discussed as a path to faster large language mode
 
 In Study~1 (Transformers-assisted, Qwen2.5 target), all tested configurations are slower than baseline (best QA speedup $0.355\times$), with only small QA proxy-F1 deltas versus baseline ($\Delta$F1 from $-0.0001$ to $-0.0005$ relative to baseline F1 $=0.0591$). In Study~2 (vLLM + EAGLE-3, Qwen3-8B target), speculative decoding shows consistent gains, with best overall speedup $1.387\times$ and category speedups up to $1.460\times$ on math-reasoning prompts.
 
-Because the two studies differ in model family, prompt set, and decoding regime, the results should be interpreted as comparative evidence across realistic stacks rather than as a single controlled causal backend ablation. For this Colab/A100 setting, the strongest observed acceleration is in the $1.3\times$--$1.46\times$ range within the vLLM+EAGLE-3 study.
+The two studies use different Qwen checkpoints, prompt sets and decoding regimes. They do not provide a cross-family comparison or a controlled causal backend ablation. The measured aggregate latency ratio in Study~2 is $1.387\times$; the $1.460\times$ value concerns only the math category. Neither establishes output equivalence or a general serving speedup.
 \end{abstract}
 
 \section{Introduction}
 Speculative decoding reduces autoregressive decoding latency by allowing a smaller or auxiliary model to propose tokens that the main model can verify in blocks. Foundational work reports substantial acceleration under favorable conditions \cite{leviathan2023fast,chen2023speculative}. However, practical deployment often diverges from idealized settings due to runtime-specific costs, tokenizer constraints, and memory behavior.
 
-This paper asks a practical question: \emph{what speed--quality gains are reproducibly achievable in a Colab-scale environment on 1\,$\times$\,A100?} We execute two studies with a shared reporting protocol:
+This unpublished exploratory report asks what latency changes appeared in two recorded Colab experiments on one A100. Independent replication has not been performed. The saved studies use a shared reporting protocol:
 \begin{itemize}[leftmargin=1.2em]
     \item \textbf{Study~1:} Transformers-assisted speculative decoding with Qwen2.5 target/draft variants.
     \item \textbf{Study~2:} vLLM speculative decoding with Qwen3-8B target and RedHatAI EAGLE-3 speculator.
 \end{itemize}
 
-The main contribution is not a new algorithmic variant, but a systematic engineering evaluation that highlights where speedups materialize in practice and where they fail.
+The contribution is a small recorded engineering experiment, including a negative result for assisted decoding. It is not a new algorithmic variant or a replicated serving benchmark.
 
 \section{Related Work}
 Speculative decoding was formalized as a lossless acceleration strategy in \cite{leviathan2023fast}, with subsequent sampling and systems variants \cite{chen2023speculative,mamou2024dynamic}. EAGLE-family methods shift speculation to stronger internal representations and dynamic trees \cite{li2024eagle,li2024eagle2,li2025eagle3}. Medusa provides a related multi-head acceleration alternative \cite{cai2024medusa}. A recent survey synthesizes this rapidly expanding design space \cite{xia2024survey}.
@@ -203,15 +203,15 @@ summarization   & 1.627 & 1.229 & 1.323 \\
 
 Study~2 quality should be interpreted as proxy-only: the reported F1 is reference-relative on a different task mix than Study~1, and exact match vs baseline is 0.0 under seeded stochastic decoding.
 
-\subsection{Internal Stability Slice (Study~2)}
-Although we did not run full multi-seed repeats, Study~2 shows consistent acceleration across two independent slices: both tested speculation budgets exceed $1\times$ (1.387 and 1.325), and both prompt categories exceed $1\times$ (math 1.460, summarization 1.323).
+\subsection{Within-run descriptive comparisons (Study~2)}
+Both recorded speculation budgets exceed $1\times$ (1.387 and 1.325), as do both prompt-category ratios (math 1.460, summarization 1.323). These overlapping views of one 24-prompt experiment are not independent replications, confidence intervals or evidence of run-to-run stability.
 
 \section{Discussion}
-\paragraph{Why Study~1 underperformed.}
-Our Study~1 setup required universal tokenizer handling and incurred significant runtime overhead in assisted generation, overwhelming theoretical savings from draft proposals in this environment.
+\paragraph{Study~1 slowdown.}
+Assisted generation was slower in every recorded cell. Tokenizer handling and runtime overhead are possible explanations, but neither was isolated or measured with profiling. The saved measurements do not establish a cause.
 
-\paragraph{Why Study~2 improved.}
-vLLM with EAGLE-3 delivered substantially better kernel/runtime behavior and scheduling in this stack, yielding practical gains above $1.3\times$.
+\paragraph{Study~2 latency reduction.}
+vLLM with EAGLE-3 had lower measured latency than its baseline in this recorded setup. There are no kernel or scheduling traces establishing which mechanism caused the difference, and the cross-study changes prevent attributing it to the serving backend alone.
 
 \paragraph{Why not 2\,$\times$--3\,$\times$ yet.}
 Even with optimized serving, observed gains remain bounded by prompt-length distribution, speculation budget, and acceptance dynamics. Under the tested conditions, we observed up to $1.460\times$ category speedup and $1.387\times$ aggregate speedup, not $2\times$--$3\times$.
@@ -219,9 +219,9 @@ Even with optimized serving, observed gains remain bounded by prompt-length dist
 \section{Limitations and Threats to Validity}
 \begin{itemize}[leftmargin=1.2em]
     \item Small evaluation set (24 prompts) chosen for rapid Colab iteration.
-    \item Cross-study confounds exist: studies differ in target model family, prompt set, and decoding regime.
+    \item Cross-study confounds exist: different checkpoints from one model family, prompt sets and decoding regimes.
     \item Quality metrics are proxy-based and task-heterogeneous (SQuAD-style QA proxy in Study~1; reference-relative prompt mix in Study~2).
-    \item No full multi-seed repeated-run error bars were computed; stability evidence is limited to ablation/category consistency within Study~2.
+    \item No multi-seed repeated-run error bars were computed; ablation/category views within Study~2 are descriptive rather than stability evidence.
     \item Single hardware/runtime profile (1\,$\times$\,A100, Colab).
     \item Results can shift with newer runtime/library versions and different batching/prompt distributions.
 \end{itemize}

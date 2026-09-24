@@ -1,6 +1,11 @@
 # Paper Package
 
-This folder contains the manuscript source and data inputs used in the final paper.
+This folder preserves an unpublished exploratory write-up and the historical
+Colab measurements supporting it. It is not a peer-reviewed or final paper.
+The prose was corrected to distinguish observed latency ratios from unsupported
+causal claims about kernels/scheduling and from independent replication. The
+CSV measurements are unchanged. This document does not report results from the
+new serving harness.
 
 ## Contents
 - `main.tex`: manuscript source
