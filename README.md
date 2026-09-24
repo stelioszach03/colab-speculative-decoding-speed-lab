@@ -19,7 +19,9 @@ python -m inference_lab.benchmark --model YOUR_ACTUAL_SERVED_MODEL_ID \
   --output results/first-local-run --execute
 ```
 
-Read [the serving protocol and metric definitions](docs/SERVING_BENCHMARK.md) before using results. The six bundled prompts are synthetic smoke workloads. They do not establish representative serving performance. GPU telemetry, cost, output quality, quantization comparisons and controlled multi-run results are not implemented or claimed in this first slice.
+Read [the serving protocol and metric definitions](docs/SERVING_BENCHMARK.md) before using results. The six original bundled prompts are synthetic smoke workloads. They do not establish representative serving performance.
+
+The separate [controlled GPU pilot v1](docs/CONTROLLED_PILOT_V1.md) now fixes a model revision, container digest, 64 synthetic prompts, cache OFF/ON settings and three paired concurrency sweeps. Its runner records real NVIDIA-smi telemetry and preserves failures, request traces and output-hash comparisons. `python -m inference_lab.pilot` prints the plan without allocating hardware or contacting an endpoint. **A prepared protocol is not a GPU result**; actual measurements must be collected and reviewed before reporting outcomes. Cost, output quality, quantization and speculative-decoding comparisons are not established by this pilot.
 
 ## Recorded results
 

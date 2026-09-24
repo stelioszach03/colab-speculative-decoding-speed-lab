@@ -127,7 +127,7 @@ class StreamRecord:
         }
 
 
-def stream_request(base_url, model, prompt, max_tokens, timeout, api_key=None):
+def stream_request(base_url, model, prompt, max_tokens, timeout, api_key=None, fixed_output=False):
     target = endpoint(base_url)
     connection_type = http.client.HTTPSConnection if target.scheme == "https" else http.client.HTTPConnection
     connection = connection_type(target.hostname, target.port, timeout=timeout)
@@ -137,6 +137,10 @@ def stream_request(base_url, model, prompt, max_tokens, timeout, api_key=None):
     payload = {"model": model, "messages": [{"role": "user", "content": prompt}],
                "temperature": 0, "max_tokens": max_tokens, "stream": True,
                "stream_options": {"include_usage": True}, "n": 1}
+    if fixed_output:
+        # vLLM extension: equalize decode work, not output quality or task success.
+        payload.update({"min_tokens": max_tokens, "ignore_eos": True})
+    started_at = datetime.now(timezone.utc).isoformat()
     start = time.perf_counter()
     record = StreamRecord()
     status, error, response = None, None, None
@@ -186,7 +190,8 @@ def stream_request(base_url, model, prompt, max_tokens, timeout, api_key=None):
         if response is not None:
             response.close()
         connection.close()
-    return {"ok": error is None, "error": error, "http_status": status,
+    return {"ok": error is None, "error": error, "http_status": status, "started_at": started_at,
+            "finished_at": datetime.now(timezone.utc).isoformat(),
             "latency_s": time.perf_counter() - start, **record.metrics()}
 
 
@@ -238,12 +243,13 @@ def run_suite(args, workload, plan):
                 return {"request_id": f"c{concurrency}-{'warmup' if warmup else 'measured'}-{index}",
                         "workload_id": item["id"], "concurrency": concurrency, "warmup": warmup,
                         **stream_request(args.base_url, args.model, item["prompt"],
-                                         args.max_tokens, args.timeout, api_key)}
+                                         args.max_tokens, args.timeout, api_key, args.fixed_output_tokens)}
             for concurrency in args.concurrency:
                 for index in range(args.warmup):
                     row = request(index, concurrency, True)
                     raw.write(json.dumps(row) + "\n")
                     raw.flush()
+                stage_started_at = datetime.now(timezone.utc).isoformat()
                 start = time.perf_counter()
                 rows = []
                 # Fixed concurrency, closed loop: next queued request starts when a worker frees.
@@ -254,7 +260,9 @@ def run_suite(args, workload, plan):
                         rows.append(row)
                         raw.write(json.dumps(row) + "\n")
                         raw.flush()
-                summaries.append(summarize(rows, time.perf_counter() - start, concurrency))
+                summaries.append({**summarize(rows, time.perf_counter() - start, concurrency),
+                                  "started_at": stage_started_at,
+                                  "finished_at": datetime.now(timezone.utc).isoformat()})
                 (args.output / "summary.json").write_text(json.dumps({"schema": SCHEMA, "stages": summaries}, indent=2) + "\n")
         manifest["status"] = "completed"
     finally:
@@ -274,6 +282,7 @@ def main(argv=None):
     parser.add_argument("--requests", type=int, default=16, help="Measured requests per concurrency stage")
     parser.add_argument("--warmup", type=int, default=1, help="Serial warmups per stage, logged and excluded")
     parser.add_argument("--max-tokens", type=int, default=128)
+    parser.add_argument("--fixed-output-tokens", action="store_true", help="vLLM min_tokens=max_tokens and ignore_eos; synthetic fixed decode work")
     parser.add_argument("--timeout", type=float, default=30, help="Socket inactivity timeout and checked request deadline")
     parser.add_argument("--seed", type=int, default=17, help="Workload-order seed, not server determinism")
     parser.add_argument("--api-key-env", help="Optional environment variable; value never written to artifacts")
@@ -300,6 +309,7 @@ def main(argv=None):
             "runner_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
             "concurrency": args.concurrency, "requests_per_stage": args.requests,
             "warmup_per_stage": args.warmup, "max_tokens": args.max_tokens,
+            "fixed_output_tokens": args.fixed_output_tokens,
             "temperature": 0, "request_timeout_s": args.timeout, "workload_order_seed": args.seed,
             "total_requests_including_warmup": len(args.concurrency) * (args.requests + args.warmup),
             "maximum_requested_output_tokens": len(args.concurrency) * (args.requests + args.warmup) * args.max_tokens,

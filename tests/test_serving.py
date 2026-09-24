@@ -148,6 +148,14 @@ class ServerTests(unittest.TestCase):
                 self.assertFalse(row['ok'])
                 self.assertNotIn('private error', json.dumps(row))
 
+    def test_fixed_decode_request_is_explicit_and_default_unchanged(self):
+        stream_request(self.url, 'fixture-model', 'success', 8, 3, fixed_output=True)
+        payload = self.server.observed[-1]['payload']
+        self.assertEqual(payload['min_tokens'], 8)
+        self.assertTrue(payload['ignore_eos'])
+        stream_request(self.url, 'fixture-model', 'success', 8, 3)
+        self.assertNotIn('min_tokens', self.server.observed[-1]['payload'])
+
     def test_suite_writes_measured_and_warmup_raw_records(self):
         with tempfile.TemporaryDirectory() as directory:
             output = Path(directory) / 'run'
