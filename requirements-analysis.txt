@@ -1,0 +1,2 @@
+# Optional offline analysis only; not installed in or used by the frozen runner.
+matplotlib==3.11.2

@@ -6,9 +6,10 @@ import csv
 from datetime import datetime, timezone
 import hashlib
 import json
+import math
 from pathlib import Path
 
-from inference_lab.benchmark import percentiles
+from inference_lab.benchmark import percentiles, summarize
 
 
 def gpu_rows(path):
@@ -20,7 +21,12 @@ def gpu_rows(path):
                 moment = datetime.strptime(values['timestamp'], '%Y/%m/%d %H:%M:%S.%f').replace(tzinfo=timezone.utc)
                 def number(name):
                     value = next((v for k, v in values.items() if k.startswith(name)), None)
-                    return float(value.split()[0]) if value and value not in ('[N/A]', 'N/A', '[Not Supported]') else None
+                    numeric = float(value.split()[0]) if value and value not in ('[N/A]', 'N/A', '[Not Supported]') else None
+                    if numeric is not None and (not math.isfinite(numeric) or numeric < 0):
+                        raise ValueError('GPU sample must be finite and nonnegative')
+                    if name == 'utilization.gpu' and numeric is not None and numeric > 100:
+                        raise ValueError('GPU utilization exceeds 100 percent')
+                    return numeric
                 rows.append({'time': moment, 'memory_mib': number('memory.used'),
                              'utilization_percent': number('utilization.gpu'), 'power_w': number('power.draw')})
             except (ValueError, KeyError):
@@ -29,12 +35,33 @@ def gpu_rows(path):
     return rows
 
 
+def check_summary(stage, measured):
+    """Reject corrupted/inconsistent derived metrics; preserve genuine failures."""
+    if len({row['request_id'] for row in measured}) != len(measured):
+        raise ValueError('Duplicate measured request IDs')
+    if len({row['workload_id'] for row in measured}) != len(measured):
+        raise ValueError('Duplicate workload IDs within a 64-prompt pilot stage')
+    expected = summarize(measured, stage['elapsed_s'], stage['concurrency'])
+    def same(left, right):
+        if type(left) is float or type(right) is float:
+            return isinstance(left, (int, float)) and isinstance(right, (int, float)) and math.isclose(left, right, rel_tol=1e-12, abs_tol=1e-12)
+        if isinstance(left, dict) and isinstance(right, dict):
+            return left.keys() == right.keys() and all(same(left[key], right[key]) for key in left)
+        return left == right
+    for key, value in expected.items():
+        if not same(stage.get(key), value):
+            raise ValueError(f'Summary field {key} does not match raw request evidence')
+
+
 def aggregate(root):
     plan = json.loads((root / 'protocol.json').read_text())
+    frozen = json.loads((Path(__file__).resolve().parents[1] / 'protocols/controlled-pilot-v1.json').read_text())
+    if plan != frozen:
+        raise ValueError('Artifact protocol differs from the frozen controlled pilot v1 plan')
     manifest = json.loads((root / 'manifest.json').read_text())
     result = {'schema': plan['schema'] + '-report', 'source_status': manifest['status'],
               'limitations': plan['limitations'], 'stages': [], 'output_agreement': [],
-              'incomplete_cells': [], 'cost_usd': None}
+              'incomplete_cells': [], 'cost_usd': None, 'integrity_issues': []}
     pairs = {}
     for cell in plan['cells']:
         directory = root / cell['id']
@@ -45,6 +72,11 @@ def aggregate(root):
         records = [json.loads(line) for line in (directory / 'client/requests.jsonl').read_text().splitlines()]
         readings = gpu_rows(directory / 'gpu.csv')
         summary = json.loads(summary_path.read_text())
+        if len({stage['concurrency'] for stage in summary['stages']}) != len(summary['stages']):
+            raise ValueError('Duplicate stages in a cell summary')
+        observed_order = [stage['concurrency'] for stage in summary['stages']]
+        if observed_order != cell['concurrency'][:len(observed_order)]:
+            result['integrity_issues'].append(f"{cell['id']}: stage order differs from frozen protocol")
         for stage in summary['stages']:
             start, end = (datetime.fromisoformat(stage[key]) for key in ('started_at', 'finished_at'))
             samples = [row for row in readings if start <= row['time'] <= end]
@@ -53,6 +85,13 @@ def aggregate(root):
             power = [row['power_w'] for row in samples if row['power_w'] is not None]
             concurrent = stage['concurrency']
             measured = [row for row in records if not row['warmup'] and row['concurrency'] == concurrent]
+            check_summary(stage, measured)
+            if len(measured) != plan['requests_per_stage']:
+                result['integrity_issues'].append(f"{cell['id']} c{concurrent}: measured request count differs from frozen protocol")
+            if any(row.get('actual_model') != plan['model'] for row in measured if row['ok']):
+                result['integrity_issues'].append(f"{cell['id']} c{concurrent}: successful response model differs from protocol")
+            if not samples:
+                result['integrity_issues'].append(f"{cell['id']} c{concurrent}: no GPU sample in measured interval")
             fixed_violations = sum(row['ok'] and row.get('completion_tokens') != plan['max_tokens'] for row in measured)
             result['stages'].append({'cell': cell['id'], 'replicate': cell['replicate'],
                                      'prefix_cache': cell['prefix_cache'], **stage,
@@ -75,7 +114,9 @@ def aggregate(root):
                                                 'paired_successful_requests': len(comparable), 'exact_text_hash_matches': matches,
                                                 'not_a_quality_score': True})
     result['source_file_sha256'] = {str(path.relative_to(root)): hashlib.sha256(path.read_bytes()).hexdigest()
-                                    for path in sorted(root.rglob('*')) if path.is_file() and path.name not in {'report.json', 'stages.csv'}}
+                                    for path in sorted(root.rglob('*')) if path.is_file()
+                                    and path.name not in {'report.json', 'stages.csv'}
+                                    and 'figures' not in path.relative_to(root).parts}
     return result
 
 
