@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-title: "Colab Speculative Decoding Speed Lab"
+title: "Inference Systems Lab"
 message: "If you use this repository, please cite it using this metadata."
 type: software
 authors:
@@ -7,7 +7,7 @@ authors:
     given-names: "Stelios"
 repository-code: "https://github.com/stelioszach03/colab-speculative-decoding-speed-lab"
 license: "MIT"
-abstract: "Colab-scale empirical study of speculative decoding speed-quality trade-offs on 1x A100, including Transformers-assisted and vLLM+EAGLE-3 evaluation paths."
+abstract: "A local streaming-serving benchmark harness with preserved historical Colab measurements of Transformers assisted decoding and vLLM with EAGLE-3. No new GPU serving study is claimed."
 keywords:
   - LLM inference
   - speculative decoding

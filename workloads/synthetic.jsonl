@@ -1,0 +1,6 @@
+{"id":"queue-explanation","prompt":"Explain a bounded work queue and backpressure in three concise paragraphs. Give one example involving a web server."}
+{"id":"streaming-parser","prompt":"Write a small Python function that splits newline-delimited input chunks into complete lines, retaining an incomplete final line. Explain two edge cases."}
+{"id":"cache-design","prompt":"Compare least-recently-used and time-to-live caches for a public transit API. Explain freshness and memory limits without making performance claims."}
+{"id":"incident-summary","prompt":"Summarize this fabricated incident: At 10:00 a deployment began. At 10:02 error rates increased. At 10:05 the team rolled back. At 10:08 health checks recovered. List facts and unanswered questions separately."}
+{"id":"sql-review","prompt":"Review this query for correctness: SELECT department, MAX(salary), employee_name FROM employees GROUP BY department; Describe a deterministic alternative for tied maximum salaries."}
+{"id":"benchmark-design","prompt":"Propose an experiment comparing two inference servers. Cover warmup, identical prompts, concurrency, error counts, token usage and the limits of a small sample."}

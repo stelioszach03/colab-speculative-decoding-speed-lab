@@ -1,8 +1,25 @@
-# Speculative Decoding Speed Lab
+# Inference Systems Lab
 
-A recorded Colab experiment comparing baseline generation with Transformers assisted decoding and vLLM + EAGLE-3. It explores when speculative decoding helps latency and when its overhead dominates.
+A serving-measurement toolkit growing from the recorded Speculative Decoding Speed Lab. The repository name and historical notebook remain unchanged.
 
-**Status:** experimental notebook with unpublished write-up artifacts. The checked-in outputs are historical measurements, not a general speed or quality guarantee.
+**Status:** the new streaming benchmark harness is implemented and tested against an offline fixture server. **No new GPU serving results have been collected.** The earlier Colab measurements below remain historical, unpublished experiments, not a general speed or quality guarantee.
+
+## Streaming serving benchmark
+
+The standard-library Python client targets a locally served OpenAI-compatible `/v1/chat/completions` endpoint. It records each request's status, first text-chunk arrival, subsequent chunk gaps, total latency, server-reported tokens, warmups, workload hash and server settings. Concurrency stages use a fixed-size closed-loop worker pool. No model is downloaded or started by the client.
+
+```bash
+# From the repository root; Python 3.11+. Prints a plan, no network calls.
+python -m inference_lab.benchmark --model YOUR_ACTUAL_SERVED_MODEL_ID
+
+# Once your model server is running on loopback, explicitly execute:
+python -m inference_lab.benchmark --model YOUR_ACTUAL_SERVED_MODEL_ID \
+  --base-url http://127.0.0.1:8000/v1 --concurrency 1 4 \
+  --requests 16 --warmup 1 --max-tokens 128 \
+  --output results/first-local-run --execute
+```
+
+Read [the serving protocol and metric definitions](docs/SERVING_BENCHMARK.md) before using results. The six bundled prompts are synthetic smoke workloads. They do not establish representative serving performance. GPU telemetry, cost, output quality, quantization comparisons and controlled multi-run results are not implemented or claimed in this first slice.
 
 ## Recorded results
 
@@ -36,9 +53,10 @@ pdflatex -interaction=nonstopmode -halt-on-error main.tex
 
 ```bash
 python3 scripts/check_recorded_results.py
+python3 -m unittest discover -s tests -v
 ```
 
-This standard-library check compares recorded values; it does not run training/inference or independently validate the experiment.
+The first check compares recorded values. The second exercises the HTTP/SSE client with a local fixture server. Neither runs model inference or independently validates the historical experiment.
 
 ## Limits
 
