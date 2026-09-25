@@ -1,0 +1,81 @@
+{
+  "comparisons": {
+    "across_hardware": {
+      "1.5b": {
+        "hash_equal": 3246,
+        "hash_mismatch": 850,
+        "paired": 4096
+      },
+      "7b": {
+        "hash_equal": 2027,
+        "hash_mismatch": 2069,
+        "paired": 4096
+      }
+    },
+    "within_hardware_cache": {
+      "a10080": {
+        "1.5b": {
+          "hash_equal": 1635,
+          "hash_mismatch": 413,
+          "paired": 2048
+        },
+        "7b": {
+          "hash_equal": 1077,
+          "hash_mismatch": 971,
+          "paired": 2048
+        }
+      },
+      "rtx4090": {
+        "1.5b": {
+          "hash_equal": 1665,
+          "hash_mismatch": 383,
+          "paired": 2048
+        },
+        "7b": {
+          "hash_equal": 1001,
+          "hash_mismatch": 1047,
+          "paired": 2048
+        }
+      }
+    }
+  },
+  "cost_note": "Lease lifetime times quoted hourly rates. Runpod invoice/billing record not available to this scoped API key.",
+  "freeze_sha256": "a020a05f5f01c9d480116102497801cc26122f6fcafed7dbcd214755664fbee8",
+  "hardware": [
+    {
+      "allocation_rate_estimate_usd": 1.3009166955590248,
+      "archive_sha256": "139ad9fa602fb1329c8fcb14529b92f9c023a4a34a3f1919e7d1d8024a6b16e1",
+      "cells": 32,
+      "failed": 0,
+      "freeze_sha256": "a020a05f5f01c9d480116102497801cc26122f6fcafed7dbcd214755664fbee8",
+      "gpu_name": "NVIDIA GeForce RTX 4090",
+      "hardware": "rtx4090",
+      "pod_termination_verified_utc": "2026-09-25T00:51:34.557916+00:00",
+      "requests": 8192,
+      "stages": 128,
+      "successful": 8192,
+      "vllm_version": "0.10.2"
+    },
+    {
+      "allocation_rate_estimate_usd": 2.145775430428982,
+      "archive_sha256": "2fb4e264925586c6d8ca152dcb8c3c76b5fea78c8e079cfb772e8a8f0e69d77b",
+      "cells": 32,
+      "failed": 0,
+      "freeze_sha256": "a020a05f5f01c9d480116102497801cc26122f6fcafed7dbcd214755664fbee8",
+      "gpu_name": "NVIDIA A100-SXM4-80GB",
+      "hardware": "a10080",
+      "pod_termination_verified_utc": "2026-09-25T02:12:33.239789+00:00",
+      "requests": 8192,
+      "stages": 128,
+      "successful": 8192,
+      "vllm_version": "0.10.2"
+    }
+  ],
+  "runpod_actual_billed_usd": null,
+  "runpod_allocation_rate_estimate_usd": 3.4466921259880063,
+  "schema": "factorial-serving-reviewed-v1",
+  "source_commit": "ff3cff9ee458091ef7c6e96494131d9de27f2eeb",
+  "total_http_failed": 0,
+  "total_http_successful": 16384,
+  "total_measured_requests": 16384
+}

@@ -1,0 +1,40 @@
+{
+  "across_hardware": {
+    "1.5b": {
+      "hash_equal": 3246,
+      "hash_mismatch": 850,
+      "paired": 4096
+    },
+    "7b": {
+      "hash_equal": 2027,
+      "hash_mismatch": 2069,
+      "paired": 4096
+    }
+  },
+  "within_hardware_cache": {
+    "a10080": {
+      "1.5b": {
+        "hash_equal": 1635,
+        "hash_mismatch": 413,
+        "paired": 2048
+      },
+      "7b": {
+        "hash_equal": 1077,
+        "hash_mismatch": 971,
+        "paired": 2048
+      }
+    },
+    "rtx4090": {
+      "1.5b": {
+        "hash_equal": 1665,
+        "hash_mismatch": 383,
+        "paired": 2048
+      },
+      "7b": {
+        "hash_equal": 1001,
+        "hash_mismatch": 1047,
+        "paired": 2048
+      }
+    }
+  }
+}

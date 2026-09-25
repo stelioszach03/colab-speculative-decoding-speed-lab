@@ -1,6 +1,6 @@
 # Controlled serving extension: model size, prefix reuse and hardware
 
-Prepared before execution on24September2026. This is a separate prospective experiment; the original1,536-request pilot and all historical Colab records remain unchanged. No extension outcome is claimed until its raw records exist and are checked.
+Prepared before execution on24September2026. This is a separate prospective experiment; the original1,536-request pilot and all historical Colab records remain unchanged. The frozen matrix has now completed on both GPU classes; [verified results and limitations](../artifacts/factorial-serving-v1/RESULTS.md) are reported separately.
 
 ## Fixed design
 
